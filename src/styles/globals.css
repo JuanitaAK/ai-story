@@ -12,16 +12,18 @@
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 82, 197, 220;
-    --background-end-rgb: 82, 197, 220;
+    /* --background-end-rgb: 82, 197, 220; */
+    --background: white;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: rgb(var(--background));
+  /* ( */
+  /* to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }

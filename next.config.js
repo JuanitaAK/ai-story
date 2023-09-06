@@ -3,13 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-// module.exports = {
-//   nextConfig,
-//   images: {
-//     domains: ["https://img.icons8.com/stickers/200/european-dragon.png"],
-//   },
-// };
-
 module.exports = {
   nextConfig,
   images: {
