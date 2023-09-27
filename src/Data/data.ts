@@ -1,4 +1,4 @@
-const data = [
+export const stories = [
   {
     id: "01",
     speaker: "assistant",
