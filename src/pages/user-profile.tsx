@@ -19,7 +19,11 @@ export const UserProfilePage = (props: UserProfileProps): JSX.Element => {
 
 export default UserProfilePage;
 
-export const getServerSideProps = (context) => {
+export const getServerSideProps = async (context: {
+  params: any;
+  req: any;
+  res: any;
+}) => {
   const { params, req, res } = context;
   // METHOD FOR THE REAL DATA
   //   const res = await fetch("http://localhost:3000/api/user");
