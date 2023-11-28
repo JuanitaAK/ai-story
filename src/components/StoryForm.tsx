@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { createStory } from "@/api/storiesApi";
+
+export type StoryFormData = {
+  main_character_name: string;
+  character_age: string;
+  favorite_object: string;
+  story_location: string;
+  favorite_colors: string;
+};
 
 const StoryForm: React.FC = () => {
-  // State to hold form values
-  const [formData, setFormData] = useState({
-    mainCharacterName: "",
-    characterAge: "",
-    favoriteObject: "",
-    storyLocation: "",
-    favoriteColor: "",
+  const [formData, setFormData] = useState<StoryFormData>({
+    main_character_name: "",
+    character_age: "",
+    favorite_object: "",
+    story_location: "",
+    favorite_colors: "",
   });
 
-  // Handle form input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -21,10 +28,15 @@ const StoryForm: React.FC = () => {
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //see to send to the backend
+    try {
+      const story = await createStory(formData);
+      // Handle successful response here send user to the result of of open ai request
+    } catch (error) {
+      // Handle error here
+    }
+
     console.log(formData);
   };
 
@@ -32,58 +44,58 @@ const StoryForm: React.FC = () => {
     <div className=" max-w-md mx-auto  text-font my-6 p-6 rounded-lg bg-white shadow-lg">
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label htmlFor="mainCharacterName" className="block mb-1 ">
-            What is the main character's name?
+          <label htmlFor="main_character_name" className="block mb-1 ">
+            What is the main characters name?
           </label>
           <input
             placeholder=" Nicolas"
             type="text"
-            id="mainCharacterName"
-            name="mainCharacterName"
-            value={formData.mainCharacterName}
+            id="main_character_name"
+            name="main_character_name"
+            value={formData.main_character_name}
             onChange={handleChange}
             required
             className="w-full p-2 border rounded focus:ring focus:ring-story"
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="characterAge" className="block mb-1  ">
+          <label htmlFor="character_age" className="block mb-1  ">
             How old is this character?
           </label>
           <input
             placeholder="6"
             type="text"
-            id="characterAge"
-            name="characterAge"
-            value={formData.characterAge}
+            id="character_age"
+            name="character_age"
+            value={formData.character_age}
             onChange={handleChange}
             required
             className="w-full p-2 border rounded focus:ring focus:ring-story"
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="favoriteObject" className="block mb-1  ">
+          <label htmlFor="favorite_object" className="block mb-1  ">
             What is his/her favorite object?
           </label>
           <input
             placeholder="Pokemon cards"
             type="text"
-            id="favoriteObject"
-            name="favoriteObject"
-            value={formData.favoriteObject}
+            id="favorite_object"
+            name="favorite_object"
+            value={formData.favorite_object}
             onChange={handleChange}
             required
             className="w-full p-2 border rounded focus:ring focus:ring-story"
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="storyLocation" className="block mb-1  ">
+          <label htmlFor="story_location" className="block mb-1  ">
             Where is the story to take place?
           </label>
           <select
-            id="storyLocation"
-            name="storyLocation"
-            value={formData.storyLocation}
+            id="story_location"
+            name="story_location"
+            value={formData.story_location}
             onChange={handleChange}
             required
             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
@@ -97,22 +109,22 @@ const StoryForm: React.FC = () => {
             <option value="city">City</option>
             <option value="house">House</option>
             <option value="park">Park</option>
-            <option value="other-country">Other Country</option>
+            <option value="other-country">Beach</option>
             <option value="space">Space</option>
             <option value="desert">Desert</option>
             <option value="mountains">Mountains</option>
           </select>
         </div>
         <div className="mb-6">
-          <label htmlFor="favoriteColor" className="block mb-1  ">
+          <label htmlFor="favorite_colors" className="block mb-1  ">
             What is his/her favorite color?
           </label>
           <input
             placeholder="Blue"
             type="text"
-            id="favoriteColor"
-            name="favoriteColor"
-            value={formData.favoriteColor}
+            id="favorite_colors"
+            name="favorite_colors"
+            value={formData.favorite_colors}
             onChange={handleChange}
             required
             className="w-full p-2 border rounded focus:ring focus:ring-story"

@@ -1,43 +1,97 @@
-// SignUp.tsx
-
+import { useState } from "react";
+import { createUser } from "@/api/creatUserFormApi";
 import Link from "next/link";
 
-const SignUp = () => {
+export type SignUpFormData = {
+  user_name: string;
+  user_lastname: string;
+  user_email: string;
+  confirmEmail: string;
+  user_password: string;
+  confirm_user_password: string;
+};
+
+const SignUp: React.FC = () => {
+  const [formData, setFormData] = useState<SignUpFormData>({
+    user_name: "",
+    user_lastname: "",
+    user_email: "",
+    confirmEmail: "",
+    user_password: "",
+    confirm_user_password: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (formData.user_email !== formData.confirmEmail) {
+      alert("Emails do not match ❌ ");
+      return;
+    } else if (formData.user_password !== formData.confirm_user_password) {
+      alert("The password do not match ❌");
+      return;
+    }
+
+    try {
+      const story = await createUser(formData);
+      // Handle successful response here send user to the result of of open ai request
+    } catch (error) {
+      // Handle error here
+    }
+
+    console.log(formData);
+  };
+
   return (
-    // <div className="flex flex-col items-center justify-center min-h-screen bg-background">
     <div className="flex content-center justify-center w-full mt-6 p-3">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold text-font mb-6">Sign Up</h2>
 
-        <form className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <div className="flex space-x-4">
             <div className="flex-1">
               <label
-                htmlFor="firstName"
-                className="text-sm font-medium text-neutral-700"
+                htmlFor="user_name"
+                className="text-sm my-3 font-medium text-neutral-700"
               >
                 First Name
               </label>
               <input
                 type="text"
-                id="firstName"
-                className="input-field"
-                placeholder="Your first name"
+                id="user_name"
+                className="w-full p-2 border rounded focus:ring focus:ring-story"
+                placeholder="John"
+                name="user_name"
+                value={formData.user_name}
+                onChange={handleChange}
                 required
               />
             </div>
             <div className="flex-1">
               <label
-                htmlFor="lastName"
-                className="text-sm font-medium text-neutral-700"
+                htmlFor="user_lastname"
+                className="text-sm my-3 font-medium text-neutral-700"
               >
                 Last Name
               </label>
               <input
                 type="text"
-                id="lastName"
-                className="input-field"
-                placeholder="Your last name"
+                id="user_lastname"
+                className="w-full p-2 border rounded focus:ring focus:ring-story"
+                placeholder="Doe"
+                name="user_lastname"
+                value={formData.user_lastname}
+                onChange={handleChange}
                 required
               />
             </div>
@@ -52,8 +106,11 @@ const SignUp = () => {
           <input
             type="email"
             id="email"
-            className="input-field"
-            placeholder="Your email"
+            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            placeholder="toto@story.com"
+            name="user_email"
+            value={formData.user_email}
+            onChange={handleChange}
             required
           />
           <label
@@ -65,38 +122,50 @@ const SignUp = () => {
           <input
             type="email"
             id="confirmEmail"
-            className="input-field"
-            placeholder="Confirm your email"
+            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            placeholder="toto@story.com"
+            name="confirmEmail"
+            value={formData.confirmEmail}
+            onChange={handleChange}
             required
           />
 
           <label
-            htmlFor="password"
+            htmlFor="user_password"
             className="text-sm font-medium text-neutral-700"
           >
-            Password (Minimum 8 characters, including at least one uppercase
-            letter, one lowercase letter, one number, and one special character)
+            Password
+            <br />
+            It has to have minimum 8 characters, including at least one
+            uppercase letter, one lowercase letter, one number, and one special
+            character.
           </label>
           <input
             type="password"
-            id="password"
-            className="input-field"
-            placeholder="Your password"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-            title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
+            id="user_password"
+            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            placeholder="Your user_password"
+            name="user_password"
+            value={formData.user_password}
+            onChange={handleChange}
+            // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            title="The password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
             required
           />
           <label
-            htmlFor="confirmPassword"
+            htmlFor="confirm_user_password"
             className="text-sm font-medium text-neutral-700"
           >
-            Confirm Password
+            Confirm user_password
           </label>
           <input
             type="password"
-            id="confirmPassword"
-            className="input-field"
-            placeholder="Confirm your password"
+            id="confirm_muser_password"
+            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            value={formData.confirm_user_password}
+            name="confirm_user_password"
+            onChange={handleChange}
+            placeholder="Confirm your user_password"
             required
           />
 
@@ -121,8 +190,6 @@ const SignUp = () => {
 
 export default SignUp;
 
-// import Link from "next/link";
-
 // const SignUp = () => {
 //   return (
 //     <div className="flex flex-col items-center justify-center min-h-screen bg-background">
@@ -139,7 +206,7 @@ export default SignUp;
 //           <input
 //             type="text"
 //             id="name"
-//             className="input-field"
+//             className="w-full p-2 border rounded focus:ring focus:ring-story"
 //             placeholder="Your full name"
 //             required
 //           />
@@ -153,22 +220,22 @@ export default SignUp;
 //           <input
 //             type="email"
 //             id="email"
-//             className="input-field"
+//             className="w-full p-2 border rounded focus:ring focus:ring-story"
 //             placeholder="Your email"
 //             required
 //           />
 
 //           <label
-//             htmlFor="password"
+//             htmlFor="user_password"
 //             className="text-sm font-medium text-neutral-700"
 //           >
-//             Password
+//             user_password
 //           </label>
 //           <input
-//             type="password"
-//             id="password"
-//             className="input-field"
-//             placeholder="Your password"
+//             type="user_password"
+//             id="user_password"
+//             className="w-full p-2 border rounded focus:ring focus:ring-story"
+//             placeholder="Your user_password"
 //             required
 //           />
 
