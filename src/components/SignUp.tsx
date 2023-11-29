@@ -5,7 +5,7 @@ import Link from "next/link";
 export type SignUpFormData = {
   user_name: string;
   user_lastname: string;
-  user_email: string;
+  user_mail: string;
   confirmEmail: string;
   user_password: string;
   confirm_user_password: string;
@@ -15,7 +15,7 @@ const SignUp: React.FC = () => {
   const [formData, setFormData] = useState<SignUpFormData>({
     user_name: "",
     user_lastname: "",
-    user_email: "",
+    user_mail: "",
     confirmEmail: "",
     user_password: "",
     confirm_user_password: "",
@@ -34,7 +34,7 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (formData.user_email !== formData.confirmEmail) {
+    if (formData.user_mail !== formData.confirmEmail) {
       alert("Emails do not match ❌ ");
       return;
     } else if (formData.user_password !== formData.confirm_user_password) {
@@ -43,8 +43,7 @@ const SignUp: React.FC = () => {
     }
 
     try {
-      const story = await createUser(formData);
-      // Handle successful response here send user to the result of of open ai request
+      const newUser = await createUser(formData);
     } catch (error) {
       // Handle error here
     }
@@ -108,8 +107,8 @@ const SignUp: React.FC = () => {
             id="email"
             className="w-full p-2 border rounded focus:ring focus:ring-story"
             placeholder="toto@story.com"
-            name="user_email"
-            value={formData.user_email}
+            name="user_mail"
+            value={formData.user_mail}
             onChange={handleChange}
             required
           />
