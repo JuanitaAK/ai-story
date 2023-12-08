@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUser } from "@/api/creatUserFormApi";
+import { createUser } from "@/services/creatUserFormApi";
 import Link from "next/link";
 
 export type SignUpFormData = {
@@ -155,7 +155,7 @@ const SignUp: React.FC = () => {
             htmlFor="confirm_user_password"
             className="text-sm font-medium text-neutral-700"
           >
-            Confirm user_password
+            Confirm your password
           </label>
           <input
             type="password"
@@ -188,73 +188,3 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
-
-// const SignUp = () => {
-//   return (
-//     <div className="flex flex-col items-center justify-center min-h-screen bg-background">
-//       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-//         <h2 className="text-3xl font-bold text-font mb-6">Sign Up</h2>
-
-//         <form className="flex flex-col space-y-4">
-//           <label
-//             htmlFor="name"
-//             className="text-sm font-medium text-neutral-700"
-//           >
-//             Full Name
-//           </label>
-//           <input
-//             type="text"
-//             id="name"
-//             className="w-full p-2 border rounded focus:ring focus:ring-story"
-//             placeholder="Your full name"
-//             required
-//           />
-
-//           <label
-//             htmlFor="email"
-//             className="text-sm font-medium text-neutral-700"
-//           >
-//             Email
-//           </label>
-//           <input
-//             type="email"
-//             id="email"
-//             className="w-full p-2 border rounded focus:ring focus:ring-story"
-//             placeholder="Your email"
-//             required
-//           />
-
-//           <label
-//             htmlFor="user_password"
-//             className="text-sm font-medium text-neutral-700"
-//           >
-//             user_password
-//           </label>
-//           <input
-//             type="user_password"
-//             id="user_password"
-//             className="w-full p-2 border rounded focus:ring focus:ring-story"
-//             placeholder="Your user_password"
-//             required
-//           />
-
-//           <button
-//             type="submit"
-//             className="bg-button text-white py-2 rounded-md hover:bg-hover transition duration-300"
-//           >
-//             Sign Up
-//           </button>
-//         </form>
-
-//         <p className="text-sm text-neutral-600 mt-4">
-//           Already have an account?{" "}
-//           <Link href="/signin" className="text-blue hover:underline">
-//             Sign In
-//           </Link>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SignUp;

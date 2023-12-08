@@ -1,4 +1,4 @@
-import { connectUser } from "@/api/signInUsperApi";
+import { connectUser } from "@/services/signInUsperApi";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";

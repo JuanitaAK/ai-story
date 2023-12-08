@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createStory } from "@/api/storiesApi";
+import { createStory } from "@/services/storiesApi";
 
 export type StoryFormData = {
   main_character_name: string;
@@ -90,7 +90,7 @@ const StoryForm: React.FC = () => {
         </div>
         <div className="mb-6">
           <label htmlFor="story_location" className="block mb-1  ">
-            Where is the story to take place?
+            Where is the story going to take place?
           </label>
           <select
             id="story_location"
