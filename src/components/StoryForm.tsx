@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { createStory } from "@/services/storiesApi";
 
 export type StoryFormData = {
+  language: string;
   main_character_name: string;
   character_age: string;
   favorite_object: string;
@@ -10,7 +12,10 @@ export type StoryFormData = {
 };
 
 const StoryForm: React.FC = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState<StoryFormData>({
+    language: "",
     main_character_name: "",
     character_age: "",
     favorite_object: "",
@@ -30,11 +35,18 @@ const StoryForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       const story = await createStory(formData);
-      // Handle successful response here send user to the result of of open ai request
+      router.push(`/stories`);
+
+      //router.push(`/stories/${story.id}`);
     } catch (error) {
-      // Handle error here
+      return (
+        <div className="max-w-md mx-auto my-6 p-6 rounded-lg bg-white shadow-lg">
+          <p>Something went wrong...🧐 please try again later </p>
+        </div>
+      );
     }
 
     console.log(formData);
@@ -43,6 +55,28 @@ const StoryForm: React.FC = () => {
   return (
     <div className=" max-w-md mx-auto  text-font my-6 p-6 rounded-lg bg-white shadow-lg">
       <form onSubmit={handleSubmit}>
+        <div className="mb-6">
+          <label htmlFor="language" className="block mb-1 ">
+            In what language do you like your story?
+          </label>
+          <select
+            id="language"
+            name="language"
+            value={formData.language}
+            onChange={handleChange}
+            required
+            className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="" disabled>
+              Select a language
+            </option>
+            <option value="English">English</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Mandarin">Mandarin</option>
+            <option value="Arabic">Arabic</option>
+          </select>
+        </div>
         <div className="mb-6">
           <label htmlFor="main_character_name" className="block mb-1 ">
             What is the main characters name?
