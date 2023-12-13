@@ -2,7 +2,7 @@ import { SignInFormData } from "@/components/SignIn";
 
 export const connectUser = async (user: SignInFormData) => {
   const response = await fetch(
-    process.env.SIGIN_USER || "http://localhost:5000/login",
+    process.env.SIGNIN_USER || "http://localhost:5000/login",
     {
       method: "POST",
       headers: {

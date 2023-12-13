@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an an app where you can send a form with key information to create a pesonalised story using Gen AI.
+This is an an app where you can send a form with key information to create a personalized story using Gen AI.
 
 ## Installation
 
