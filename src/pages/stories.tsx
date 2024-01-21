@@ -64,5 +64,4 @@ const StoriesContainer = () => {
     </div>
   );
 };
-
 export default StoriesContainer;

@@ -1,10 +1,10 @@
-import StoryCard from "@/components/storiesCard/StoryCard";
+import { StoryCard } from "@/components/storiesCard/StoryCard";
 
 import { useEffect, useState } from "react";
-import { Story } from "@/pages/stories";
+import { Story as StoryOne } from "@/pages/stories";
 
-const StoriesContainer = () => {
-  const [story, setStories] = useState<Story>({ story: "", id: "" });
+const OneStoriesContainer = () => {
+  const [storyOne, setStory] = useState<StoryOne>({} as StoryOne);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -12,10 +12,11 @@ const StoriesContainer = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          process.env.STORIES || "http://localhost:5000/story"
+          process.env.STORY || "http://localhost:5000/story"
         );
         const data = await response.json();
-        setStories(data);
+        setStory(data[0] as StoryOne);
+        console.log(storyOne, "here");
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch your st", error);
@@ -36,10 +37,10 @@ const StoriesContainer = () => {
     );
   }
 
-  if (!story) {
+  if (!storyOne) {
     return (
       <div className="story">
-        <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
+        <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5 p-5">
           You have no stories at the moment! Go ahead and create one!
         </h3>
       </div>
@@ -48,14 +49,36 @@ const StoriesContainer = () => {
 
   return (
     <div className="story">
-      <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
-        Stories
+      <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5">
+        Story Created
       </h3>
       <div className="story__container">
-        <StoryCard props={story} />
+        <StoryCard id={storyOne.id} story={storyOne.story} />
+      </div>
+      {/* //center the buttons */}
+
+      <div className="m-5 mb-4 justify-between">
+        <button
+          type="submit"
+          className="bg-story  text-blue-800 p-2 rounded-lg shadow-lg hover:bg-story-light mr-4"
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          Save New Story
+        </button>
+        <button
+          type="submit"
+          className="bg-story text-blue-800 p-2 rounded-lg shadow-lg hover:bg-story-light"
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          Do not save
+        </button>
       </div>
     </div>
   );
 };
 
-export default StoriesContainer;
+export default OneStoriesContainer;
