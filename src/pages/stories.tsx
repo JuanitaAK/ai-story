@@ -45,7 +45,7 @@ const StoriesContainer = () => {
     return (
       <div className="stories">
         <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
-          No stories found
+          You have no stories at the moment! Go ahead and create one!
         </h3>
       </div>
     );
