@@ -8,7 +8,7 @@ export type SignInFormData = {
   user_password: string;
 };
 
-const SignIn: React.FC = () => {
+export const SignIn: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState<SignInFormData>({
     user_mail: "",
@@ -95,5 +95,3 @@ const SignIn: React.FC = () => {
     </div>
   );
 };
-
-export default SignIn;

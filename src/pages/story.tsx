@@ -1,15 +1,10 @@
-import { StoryCard } from "@/components/storiesCard/StoryCard";
-//import { stories } from "./../data/data";
+import StoryCard from "@/components/storiesCard/StoryCard";
 
 import { useEffect, useState } from "react";
-
-export type Story = {
-  id: string;
-  story: string;
-};
+import { Story } from "@/pages/stories";
 
 const StoriesContainer = () => {
-  const [stories, setStories] = useState<Story[]>([]);
+  const [story, setStories] = useState<Story>({ story: "", id: "" });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -17,13 +12,13 @@ const StoriesContainer = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          process.env.STORIES || "http://localhost:5000/stories"
+          process.env.STORIES || "http://localhost:5000/story"
         );
         const data = await response.json();
         setStories(data);
         setIsLoading(false);
       } catch (error) {
-        console.error("Failed to fetch stories:", error);
+        console.error("Failed to fetch your st", error);
         setIsLoading(false);
       }
     };
@@ -33,7 +28,7 @@ const StoriesContainer = () => {
 
   if (isLoading) {
     return (
-      <div className="stories">
+      <div className="story">
         <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
           Loading...
         </h3>
@@ -41,9 +36,9 @@ const StoriesContainer = () => {
     );
   }
 
-  if (!stories) {
+  if (!story) {
     return (
-      <div className="stories">
+      <div className="story">
         <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
           You have no stories at the moment! Go ahead and create one!
         </h3>
@@ -52,14 +47,12 @@ const StoriesContainer = () => {
   }
 
   return (
-    <div className="stories">
+    <div className="story">
       <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
         Stories
       </h3>
-      <div className="stories__container">
-        {stories.map((story: Story) => (
-          <StoryCard key={story.id} {...story} />
-        ))}
+      <div className="story__container">
+        <StoryCard props={story} />
       </div>
     </div>
   );

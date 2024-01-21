@@ -37,10 +37,10 @@ const StoryForm: React.FC = () => {
     e.preventDefault();
 
     try {
+      router.push(`/loading`);
       const story = await createStory(formData);
-      router.push(`/stories`);
-
-      //router.push(`/stories/${story.id}`);
+      console.log(formData);
+      router.push(`/story`);
     } catch (error) {
       return (
         <div className="max-w-md mx-auto my-6 p-6 rounded-lg bg-white shadow-lg">
@@ -48,8 +48,6 @@ const StoryForm: React.FC = () => {
         </div>
       );
     }
-
-    console.log(formData);
   };
 
   return (
