@@ -1,8 +1,7 @@
-import e from "express";
 import { StoryFormData } from "../components/StoryForm";
-import { Story } from "@/pages/stories";
 
 export const createStory = async (story: StoryFormData) => {
+  console.log("Creating Story:", story);
   const response = await fetch(
     process.env.STORY_FORM || "http://localhost:5000/story-form",
     {
