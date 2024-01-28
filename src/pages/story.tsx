@@ -52,10 +52,9 @@ const OneStoriesContainer = () => {
       <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5">
         Story Created
       </h3>
-      <div className="story__container">
+      <div className="story__container whitespace-pre-line">
         <StoryCard id={storyOne.id} story={storyOne.story} />
       </div>
-      {/* //center the buttons */}
 
       <div className="m-5 mb-4 justify-between">
         <button

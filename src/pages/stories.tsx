@@ -50,13 +50,12 @@ const StoriesContainer = () => {
       </div>
     );
   }
-
   return (
     <div className="stories">
       <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
         Stories
       </h3>
-      <div className="stories__container">
+      <div className="stories__container whitespace-pre-line  ">
         {stories.map((story: Story) => (
           <StoryCard key={story.id} {...story} />
         ))}

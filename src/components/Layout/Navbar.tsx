@@ -19,8 +19,9 @@ const Navbar = (): JSX.Element => {
 
   return (
     <nav className="sticky top-0 z-50 p-4 md:p-4 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove">
-      <div className=" mx-6">
+      <div className=" ">
         <Image
+          className="ml-6 "
           width={60}
           height={60}
           src="https://img.icons8.com/stickers/200/european-dragon.png"

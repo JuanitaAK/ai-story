@@ -25,7 +25,7 @@ export const Loader = () => {
           className="text-blue-500"
         ></path>
       </svg>
-      Give me a sec... I am creating your story 📝
+      Give me a sec... 👀
     </div>
   );
 };
