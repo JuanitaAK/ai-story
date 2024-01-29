@@ -1,11 +1,12 @@
 import { StoryCard } from "@/components/storiesCard/StoryCard";
 //import { stories } from "./../data/data";
 
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 
 export type Story = {
-  id: string;
+  id_story: Key;
   story: string;
+  title?: string;
 };
 
 const StoriesContainer = () => {
@@ -55,9 +56,9 @@ const StoriesContainer = () => {
       <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
         Stories
       </h3>
-      <div className="stories__container whitespace-pre-line  ">
-        {stories.map((story: Story) => (
-          <StoryCard key={story.id} {...story} />
+      <div className="stories__container whitespace-pre-line">
+        {stories.map((story: Story, index) => (
+          <StoryCard key={index} {...story} />
         ))}
       </div>
     </div>
