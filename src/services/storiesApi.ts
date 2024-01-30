@@ -20,6 +20,31 @@ export const createStory = async (story: StoryFormData) => {
   return response.json();
 };
 
+export const deleteStory = async (id: string) => {
+  console.log("Trying to Deleting Story:", id);
+  try {
+    const baseUrl = process.env.STORY_DELETE || `http://localhost:5000/story/`;
+    const url = new URL(id, baseUrl).toString();
+    console.log("Deleting Story:", url);
+
+    const response = await fetch(url, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(
+        `Failed to delete the story with ID ${id}. Server responded with ${
+          response.status
+        }: ${errorResponse.error || "Unknown error"}`
+      );
+    }
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
 export const getStories = async () => {
   try {
     const response = await fetch(
@@ -34,6 +59,6 @@ export const getStories = async () => {
     return data;
   } catch (err) {
     console.error(err);
-    // You might want to handle the error in some way here
+    throw err;
   }
 };

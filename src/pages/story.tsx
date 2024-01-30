@@ -1,12 +1,14 @@
 import { StoryCard } from "@/components/storiesCard/StoryCard";
-
 import { useEffect, useState } from "react";
-import { Story as StoryOne } from "@/pages/stories";
 import { useRouter } from "next/router";
+import { deleteStory } from "@/services/storiesApi";
+import { Story as StoryOne } from "@/pages/stories";
 
 const OneStoriesContainer = () => {
   const [storyOne, setStory] = useState<StoryOne>({} as StoryOne);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -64,16 +66,34 @@ const OneStoriesContainer = () => {
     }
   };
 
-  const handleClickDelete = async () => {
-    console.log("clicked Delete ");
+  const handleClickDelete = async (id_story: string) => {
+    console.log("clicked on  Delete ");
+
+    try {
+      await deleteStory(id_story);
+      await router.push(`/form`);
+    } catch (error) {
+      console.error("Failed to delete your story:", error);
+      setError("Failed to delete your story!");
+    }
+    if (error) {
+      return (
+        <div className="story">
+          <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5 p-5">
+            Failed to delete your story! {error}
+          </h3>
+        </div>
+      );
+    }
   };
+
   return (
     <div className="story">
       <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5">
         Story Created
       </h3>
       <div className="story__container whitespace-pre-line">
-        <StoryCard id={storyOne.id_story} story={storyOne.story} />
+        <StoryCard {...storyOne} />
       </div>
 
       <div className="m-5 mb-4 justify-between">
@@ -90,7 +110,7 @@ const OneStoriesContainer = () => {
           type="submit"
           className="bg-story text-blue-800 p-2 rounded-lg shadow-lg hover:bg-story-light"
           onClick={() => {
-            console.log("clicked Delete "), handleClickDelete();
+            handleClickDelete(storyOne.id_story);
           }}
         >
           Do not save

@@ -1,10 +1,10 @@
 import { StoryCard } from "@/components/storiesCard/StoryCard";
 //import { stories } from "./../data/data";
 
-import { Key, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type Story = {
-  id_story: Key;
+  id_story: string;
   story: string;
   title?: string;
 };
