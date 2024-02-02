@@ -18,7 +18,7 @@ const Navbar = (): JSX.Element => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 py-4 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove">
+    <nav className="sticky top-0 z-50 py-4 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl ">
       <Image
         className="ml-6 "
         width={60}
@@ -53,7 +53,7 @@ const Navbar = (): JSX.Element => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-9 h-9"
             >
               <path
                 strokeLinecap="round"
