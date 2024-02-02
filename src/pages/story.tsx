@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { deleteStory } from "@/services/storiesApi";
 import { Story as StoryOne } from "@/pages/stories";
 
-const OneStoriesContainer = () => {
+const OneStoriesContainer = (): JSX.Element => {
   const [storyOne, setStory] = useState<StoryOne>({} as StoryOne);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

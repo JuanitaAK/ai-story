@@ -28,7 +28,7 @@ const schema = z.object({
     }),
 });
 
-export const SignIn = () => {
+export const SignIn = (): JSX.Element => {
   const router = useRouter();
 
   const {

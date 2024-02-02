@@ -1,6 +1,6 @@
 import { SignIn } from "@/components/SignIn";
 
-const LogInPage = () => {
+const LogInPage = (): JSX.Element => {
   return (
     <div className="flex content-center justify-center w-full">
       <SignIn />

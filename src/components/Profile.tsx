@@ -9,7 +9,7 @@ export type ProfilePageProps = {
   email: string;
 };
 
-const Profile: React.FC<ProfilePageProps> = (data) => {
+const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
   const { firstName, lastName, email } = userData;
   return (
     <div className="max-w-md mx-auto my-6 p-6 rounded-lg bg-white shadow-lg">

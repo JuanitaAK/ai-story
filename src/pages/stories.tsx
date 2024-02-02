@@ -9,7 +9,7 @@ export type Story = {
   title?: string;
 };
 
-const StoriesContainer = () => {
+const StoriesContainer = (): JSX.Element => {
   const [stories, setStories] = useState<Story[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

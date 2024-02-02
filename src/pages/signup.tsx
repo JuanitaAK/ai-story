@@ -1,6 +1,6 @@
 import { SignUp } from "@/components/SignUp";
 
-const SignUpPage = () => {
+const SignUpPage = (): JSX.Element => {
   return (
     <div>
       <SignUp />

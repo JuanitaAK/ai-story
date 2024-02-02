@@ -4,7 +4,7 @@ import StoriesContainer from "./stories";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const Home = (): any => {
+export const Home = (): JSX.Element => {
   return (
     <div>
       <StoriesContainer />

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <div className="flex justify-end align-top px-32 py-3 bg-bgFooter shadow-lg text-gray-200 ">
       <Link

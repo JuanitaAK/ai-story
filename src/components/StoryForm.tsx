@@ -32,7 +32,7 @@ const schema = z.object({
     .min(1, { message: "Should be easy to answer" }),
 });
 
-const StoryForm = () => {
+const StoryForm = (): JSX.Element => {
   const router = useRouter();
 
   const {

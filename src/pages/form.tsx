@@ -1,6 +1,6 @@
 import StoryForm from "@/components/StoryForm";
 
-const StoryFormPage = () => {
+const StoryFormPage = (): JSX.Element => {
   return (
     <div>
       <StoryForm />

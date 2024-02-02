@@ -18,16 +18,14 @@ const Navbar = (): JSX.Element => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 p-4 md:p-4 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove">
-      <div className=" ">
-        <Image
-          className="ml-6 "
-          width={60}
-          height={60}
-          src="https://img.icons8.com/stickers/200/european-dragon.png"
-          alt="Dragon Logo"
-        />
-      </div>
+    <nav className="sticky top-0 z-50 py-4 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove">
+      <Image
+        className="ml-6 "
+        width={60}
+        height={60}
+        src="https://img.icons8.com/stickers/200/european-dragon.png"
+        alt="Dragon Logo"
+      />
 
       <div
         className={`sm:flex sm:items-center ${menuOpen ? "flex" : "hidden"}`}

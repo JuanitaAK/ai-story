@@ -1,4 +1,4 @@
-export const Loader = () => {
+export const Loader = (): JSX.Element => {
   return (
     <div className="flex items-center justify-center h-screen ">
       <svg

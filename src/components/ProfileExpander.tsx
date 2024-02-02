@@ -14,7 +14,9 @@ export type ProfileExpanderProps = {
   };
 };
 
-const ProfileExpander: React.FC<ProfileExpanderProps> = ({ userData }) => {
+const ProfileExpander: React.FC<ProfileExpanderProps> = ({
+  userData,
+}): JSX.Element => {
   const router = useRouter();
 
   const handleLogout = () => {
