@@ -1,17 +1,15 @@
 import { Story } from "@/pages/stories";
-import { putTitle } from "@/services/storiesApi";
+import { patchTitle } from "@/services/storiesApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
   title: z.string().trim().min(1, { message: "At list une letter or number" }),
 });
 
-export const AddTitle = ({ id_story }: Story): JSX.Element => {
-  const [title, setTitle] = useState("");
+export const AddTitle = ({ id_story }: Story) => {
   const router = useRouter();
 
   const {
@@ -24,12 +22,13 @@ export const AddTitle = ({ id_story }: Story): JSX.Element => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async () => {
-    console.log("title is going ");
+  const onSubmit: SubmitHandler<Story> = async (title: Story) => {
+    console.log("title is going ", title);
     try {
       router.push(`/loading`);
-      setTitle(title);
-      await putTitle({ id_story, title });
+
+      console.log("title is going ", { id_story, title });
+      await patchTitle({ id_story, title });
       await router.push(`/stories`);
     } catch (error) {
       setError("root", { message: "Something is missing in your form" });

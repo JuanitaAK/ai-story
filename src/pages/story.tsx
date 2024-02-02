@@ -2,11 +2,13 @@ import { StoryCard } from "@/components/storiesCard/StoryCard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { deleteStory } from "@/services/storiesApi";
-import { Story as StoryOne } from "@/pages/stories";
+import { Story } from "@/pages/stories";
+import { AddTitle } from "@/components/AddTitle";
 
 const OneStoriesContainer = (): JSX.Element => {
-  const [storyOne, setStory] = useState<StoryOne>({} as StoryOne);
+  const [Story, setStory] = useState<Story>({} as Story);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAddTitle, setShowAddTitle] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const router = useRouter();
@@ -19,8 +21,8 @@ const OneStoriesContainer = (): JSX.Element => {
           process.env.STORY || "http://localhost:5000/story"
         );
         const data = await response.json();
-        setStory(data[0] as StoryOne);
-        console.log(storyOne, "here");
+        setStory(data[0] as Story);
+        console.log(Story, "here");
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch your story", error);
@@ -41,7 +43,7 @@ const OneStoriesContainer = (): JSX.Element => {
     );
   }
 
-  if (!storyOne) {
+  if (!Story) {
     return (
       <div className="story">
         <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5 p-5">
@@ -53,7 +55,8 @@ const OneStoriesContainer = (): JSX.Element => {
 
   const handleClickSave = async () => {
     try {
-      await router.push(`/stories`);
+      setShowAddTitle(true);
+      //await router.push(`/stories`);
     } catch (error) {
       console.error("Failed to save your story:", error);
       return (
@@ -67,7 +70,7 @@ const OneStoriesContainer = (): JSX.Element => {
   };
 
   const handleClickDelete = async (id_story: string) => {
-    console.log("clicked on  Delete ");
+    console.log("clicked on Delete ");
 
     try {
       await deleteStory(id_story);
@@ -93,7 +96,7 @@ const OneStoriesContainer = (): JSX.Element => {
         Story Created
       </h3>
       <div className="story__container whitespace-pre-line">
-        <StoryCard {...storyOne} />
+        <StoryCard {...Story} />
       </div>
 
       <div className="m-5 mb-4 justify-between">
@@ -106,11 +109,13 @@ const OneStoriesContainer = (): JSX.Element => {
         >
           Save New Story
         </button>
+        {showAddTitle && <AddTitle id_story={Story.id_story} />}
+
         <button
           type="submit"
           className="bg-story text-blue-800 p-2 rounded-lg shadow-lg hover:bg-story-light"
           onClick={() => {
-            handleClickDelete(storyOne.id_story);
+            handleClickDelete(Story.id_story);
           }}
         >
           Do not save

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export type Story = {
   id_story: string;
-  story: string;
+  story?: string;
   title?: string;
 };
 

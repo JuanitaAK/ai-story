@@ -1,3 +1,4 @@
+import { Story } from "@/pages/stories";
 import { StoryFormData } from "../components/StoryForm";
 
 export const createStory = async (story: StoryFormData) => {
@@ -57,6 +58,33 @@ export const getStories = async () => {
 
     const data = await response.json();
     return data;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+export const patchTitle = async ({ id_story, title }: Story) => {
+  try {
+    const baseUrl = process.env.STORY_TITLE || `http://localhost:5000/story/`;
+    const url = new URL(id_story, baseUrl).toString();
+    console.log("Adding Title:", url);
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(title),
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      throw new Error(
+        `Failed to add title to the story with ID ${id_story}. Server responded with ${
+          response.status
+        }: ${errorResponse.error || "Unknown error"}`
+      );
+    }
   } catch (err) {
     console.error(err);
     throw err;
