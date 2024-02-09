@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import ProfileExpander from "../ProfileExpander";
+import { ProfileExpander } from "../ProfileExpander";
 import StoryForm from "../../pages/form";
 import { useState } from "react";
+import logo from "../../../public/logo.png";
 
 // Mock user data for demonstration purposes
 const userData = {
@@ -18,42 +19,36 @@ const Navbar = (): JSX.Element => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 py-4 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl ">
-      <Image
-        className="ml-6 "
-        width={60}
-        height={60}
-        src="https://img.icons8.com/stickers/200/european-dragon.png"
-        alt="Dragon Logo"
-      />
+    <nav className="sticky top-0 z-50 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl ">
+      <Image className="w-20 h-20 rounded-full" src={logo} alt="Story.com" />
 
       <div
         className={`sm:flex sm:items-center ${menuOpen ? "flex" : "hidden"}`}
       >
-        <div className="sm:flex space-x-4">
+        <div className="sm:flex space-x-4 text-nav-font font-semibold text-lg ">
           <Link
             href="/stories"
-            className="hover:bg-hover hover:text-white rounded-md px-3 py-2 text-xl font-medium"
+            className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
             Stories
           </Link>
           <Link
             href="/form"
-            className="hover:bg-hover hover:text-white rounded-md px-3 py-2 text-xl font-medium"
+            className="hover:bg-hover hover:text-white rounded-md px-3 py-2 "
           >
             New Story
           </Link>
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="hover:bg-hover hover:text-white rounded-md px-3 py-2 text-xl font-medium"
+            className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={1.8}
               stroke="currentColor"
-              className="w-9 h-9"
+              className="w-8 h-8"
             >
               <path
                 strokeLinecap="round"

@@ -9,9 +9,8 @@ const schema = z.object({
   title: z.string().trim().min(1, { message: "At list une letter or number" }),
 });
 
-export const AddTitle = ({ id_story }: Story) => {
+export const AddTitle = ({ id_story }: { id_story: string }): JSX.Element => {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -23,11 +22,8 @@ export const AddTitle = ({ id_story }: Story) => {
   });
 
   const onSubmit: SubmitHandler<Story> = async (title: Story) => {
-    console.log("title is going ", title);
     try {
       router.push(`/loading`);
-
-      console.log("title is going ", { id_story, title });
       await patchTitle({ id_story, title });
       await router.push(`/stories`);
     } catch (error) {
@@ -41,7 +37,7 @@ export const AddTitle = ({ id_story }: Story) => {
   };
   return (
     <div className="flex flex-col space-y-4 text-font p-6 m-3 rounded-lg bg-white shadow-lg">
-      <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-neutral-800">
+      <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-nav-font">
         What title do you want to give the story ?
       </h3>
       <form
@@ -58,6 +54,7 @@ export const AddTitle = ({ id_story }: Story) => {
         {errors.title && (
           <div className="text-red-500">{errors.title.message}</div>
         )}
+
         <button
           type="submit"
           disabled={isSubmitting}
@@ -65,6 +62,13 @@ export const AddTitle = ({ id_story }: Story) => {
         >
           Add Title
         </button>
+        {/* <button
+          type="submit"
+          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          onClick={() => setShowAddTitle(false)}
+        >
+          Close
+        </button> */}
       </form>
     </div>
   );

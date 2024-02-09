@@ -18,6 +18,7 @@ const config: Config = {
         background: "#FFFFFF",
         bgFooter: "#4c71f5",
         navbar: "#FFFFFF",
+        "nav-font": "#33A8FF",
         font: "#343a40",
         button: "#FF7F50",
         hover: "#FFD700",

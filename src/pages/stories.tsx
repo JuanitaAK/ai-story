@@ -53,8 +53,8 @@ const StoriesContainer = (): JSX.Element => {
   }
   return (
     <div className="stories">
-      <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
-        Stories
+      <h3 className="mb-2 text-3xl font-bold leading-tight text-nav-font dark:text-neutral-50 m-5">
+        Your Stories
       </h3>
       <div className="stories__container whitespace-pre-line">
         {stories.map((story: Story, index) => (

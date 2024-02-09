@@ -14,7 +14,7 @@ export type ProfileExpanderProps = {
   };
 };
 
-const ProfileExpander: React.FC<ProfileExpanderProps> = ({
+export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
   userData,
 }): JSX.Element => {
   const router = useRouter();
@@ -48,10 +48,8 @@ const ProfileExpander: React.FC<ProfileExpanderProps> = ({
           </div>
         </>
       ) : (
-        <button onClick={handleLogin}> Please login </button>
+        <button onClick={handleLogin}>Please login</button>
       )}
     </div>
   );
 };
-
-export default ProfileExpander;

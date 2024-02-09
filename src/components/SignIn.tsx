@@ -19,13 +19,12 @@ const schema = z.object({
     .trim()
     .min(3, { message: "Email is required" })
     .email("This is not a valid email."),
-  user_password: z
-    .string()
-    .min(3)
-    .refine((data) => passwordRequirements.test(data), {
-      message:
-        "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.",
-    }),
+  user_password: z.string().min(3), // must be disabeled when active app.
+
+  // .refine((data) => passwordRequirements.test(data), {
+  //   message:
+  //     "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+  // }),
 });
 
 export const SignIn = (): JSX.Element => {
@@ -65,7 +64,7 @@ export const SignIn = (): JSX.Element => {
   return (
     //<div className="flex content-center justify-center w-full mt-6 p-3">
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
-      <h2 className="text-3xl font-bold text-font mb-6">Sign In</h2>
+      <h2 className="text-3xl font-bold text-nav-font mb-6">Sign In</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}

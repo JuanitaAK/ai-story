@@ -83,16 +83,13 @@ const StoryForm = (): JSX.Element => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
-        <label
-          htmlFor="language"
-          className="text-m font-medium text-neutral-700"
-        >
+        <label htmlFor="language" className="text-m font-medium">
           In what language would you like your story?
         </label>
         <select
           id="language"
           {...register("language", { required: true })}
-          className="block w-full p-2 bg-white hover:border-gray-500 rounded shadow leading-tight focus:ring focus:ring-story "
+          className=" block w-full p-2 bg-white  hover:border-gray-500 rounded shadow leading-tight focus:ring focus:ring-story "
         >
           {languages.map((language, index) => (
             <option key={index} value={language}>
@@ -104,10 +101,7 @@ const StoryForm = (): JSX.Element => {
           )}
         </select>
 
-        <label
-          htmlFor="main_character_name"
-          className="text-m font-medium text-neutral-700"
-        >
+        <label htmlFor="main_character_name" className="text-m font-medium">
           What is the main characters name?
         </label>
         <input

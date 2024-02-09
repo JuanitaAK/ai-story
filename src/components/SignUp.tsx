@@ -88,7 +88,7 @@ export const SignUp = (): JSX.Element => {
   return (
     <div className="flex content-center justify-center w-full mt-6 p-3">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-font mb-6">Sign Up</h2>
+        <h2 className="text-3xl font-bold text-nav-font mb-6">Sign Up</h2>
 
         <form
           className="flex flex-col space-y-4 pb-3"
