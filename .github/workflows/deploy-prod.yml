@@ -9,6 +9,7 @@ concurrency:
 
 jobs:
   build-test:
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,6 +23,7 @@ jobs:
           # pnpm install
           # pnpm run test-unit
   deploy-prod:
+    name: Deploy to PROD
     runs-on: ubuntu-latest
     needs: build-test
     steps:
