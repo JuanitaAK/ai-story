@@ -1,0 +1,11 @@
+#github release template file including changelogs on commits with prefix feat, fix,test and chore
+
+# .github/release.yml
+changelog:
+  categories:
+    - title: Features
+      label: "feat*"
+    - title: Fixes
+      label: "fix*"
+    - title: Chores
+      label: "chore*"
