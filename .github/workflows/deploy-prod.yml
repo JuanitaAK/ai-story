@@ -1,0 +1,32 @@
+name: "🚀 Deploy to PROD environment"
+
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+          fetch-depth: 0
+      - name: Build and test
+        run: |
+          echo "Building and testing"
+          # pnpm install
+          # pnpm run test-unit
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: build-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy to test environment
+        run: |
+          echo "Deploying to prod environment"

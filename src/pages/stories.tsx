@@ -1,4 +1,5 @@
 import { StoryCard } from "@/components/storiesCard/StoryCard";
+import { Cookie } from "next/font/google";
 //import { stories } from "./../data/data";
 
 import { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ const StoriesContainer = (): JSX.Element => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
+        //change to axios call
         const response = await fetch(
           process.env.STORIES || "http://localhost:5000/stories"
         );

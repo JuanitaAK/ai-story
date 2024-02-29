@@ -1,0 +1,30 @@
+name: "🧪 Deploy to test environment"
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: main
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build and test
+        run: |
+          echo "Building and testing"
+  # pnpm run test-unit
+  # pnpm install
+  deploy-test:
+    runs-on: ubuntu-latest
+    needs: build-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy to test environment
+        run: |
+          echo "Deploying to test environment"
