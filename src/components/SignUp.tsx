@@ -72,7 +72,7 @@ export const SignUp = (): JSX.Element => {
     try {
       <Loader />;
       await createUser(data);
-      await router.push(`/form`);
+      await router.push(`/login`);
     } catch (error) {
       setError("root", {
         message: "Something is with wrong with your informations",

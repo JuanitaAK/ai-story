@@ -1,4 +1,5 @@
 import { SignUpFormData } from "@/components/SignUp";
+import router from "next/router";
 
 export const createUser = async (user: SignUpFormData) => {
   const response = await fetch(
@@ -12,7 +13,11 @@ export const createUser = async (user: SignUpFormData) => {
     }
   );
 
-  if (!response.ok) {
+  if (response.status === 409) {
+    throw new Error("User already exists 😓");
+  }
+
+  if (response.status === 500) {
     throw new Error("Failed to create user... 😬 please try again later");
   }
 
