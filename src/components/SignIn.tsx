@@ -8,24 +8,25 @@ import { Loader } from "./Loader";
 
 export type SignInFormData = {
   user_mail: string;
-  user_password: string;
+  password: string;
 };
 const passwordRequirements =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-const schema = z.object({
-  user_mail: z
-    .string()
-    .trim()
-    .min(3, { message: "Email is required" })
-    .email("This is not a valid email."),
-  user_password: z.string().min(3), // must be disabeled when active app.
-
-  // .refine((data) => passwordRequirements.test(data), {
-  //   message:
-  //     "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.",
-  // }),
-});
+const schema = z
+  .object({
+    user_mail: z
+      .string()
+      .trim()
+      .min(3, { message: "Email is required" })
+      .email("This is not a valid email."),
+    password: z.string().min(3),
+  })
+  .refine((data) => passwordRequirements.test(data.password), {
+    path: ["user_password"],
+    message:
+      "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character (@, $, !, %, *, ?, &).",
+  });
 
 export const SignIn = (): JSX.Element => {
   const router = useRouter();
@@ -62,7 +63,6 @@ export const SignIn = (): JSX.Element => {
   };
 
   return (
-    //<div className="flex content-center justify-center w-full mt-6 p-3">
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
       <h2 className="text-3xl font-bold text-nav-font mb-6">Sign In</h2>
 
@@ -94,11 +94,11 @@ export const SignIn = (): JSX.Element => {
           className="w-full p-2 border rounded focus:ring focus:ring-story"
           type="password"
           id="user_password"
-          {...register("user_password")}
+          {...register("password")}
           placeholder="********"
         />
-        {errors.user_password?.message && (
-          <div className="text-red-500">{errors.user_password.message}</div>
+        {errors.password?.message && (
+          <div className="text-red-500">{errors.password.message}</div>
         )}
 
         <button
@@ -117,6 +117,5 @@ export const SignIn = (): JSX.Element => {
         </Link>
       </p>
     </div>
-    //</div>
   );
 };

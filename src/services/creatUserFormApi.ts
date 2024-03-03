@@ -2,7 +2,7 @@ import { SignUpFormData } from "@/components/SignUp";
 
 export const createUser = async (user: SignUpFormData) => {
   const response = await fetch(
-    process.env.CREATE_USER || "http://localhost:5000/signup",
+    process.env.CREATE_USER || "http://localhost:5000/auth/signup", //"http://localhost:5000/signup",
     {
       method: "POST",
       headers: {

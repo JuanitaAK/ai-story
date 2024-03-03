@@ -11,8 +11,8 @@ export type SignUpFormData = {
   user_lastname: string;
   user_mail: string;
   confirmEmail: string;
-  user_password: string;
-  confirm_user_password: string;
+  password: string;
+  confirm_password: string;
 };
 
 const passwordRequirements =
@@ -31,23 +31,23 @@ const schema = z
       .min(3, { message: "Email is required" })
       .email("This is not a valid email."),
     confirmEmail: z.string().trim().email("This is not a valid email."),
-    user_password: z
+    password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" }),
-    confirm_user_password: z
+    confirm_password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" }),
   })
-  .refine((data) => passwordRequirements.test(data.user_password), {
+  .refine((data) => passwordRequirements.test(data.password), {
     path: ["user_password"],
     message:
-      "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character.",
+      "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character (@, $, !, %, *, ?, &).",
   })
   .refine((data) => data.user_mail === data.confirmEmail, {
     path: ["confirmEmail"],
     message: "Email don't match  ❌",
   })
-  .refine((data) => data.user_password === data.confirm_user_password, {
+  .refine((data) => data.password === data.confirm_password, {
     path: ["confirmPassword"],
     message: "Password don't match  ❌",
   });
@@ -171,23 +171,23 @@ export const SignUp = (): JSX.Element => {
 
           <label
             className="text-m font-medium text-neutral-700"
-            htmlFor="user_password"
+            htmlFor="password"
           >
             Password
           </label>
           <input
             className="w-full p-2 border rounded focus:ring focus:ring-story"
             type="password"
-            id="user_password"
+            id="password"
             placeholder="********"
-            {...register("user_password")}
+            {...register("password")}
           />
-          {errors.user_password && (
-            <div className="text-red-500">{errors.user_password.message}</div>
+          {errors.password && (
+            <div className="text-red-500">{errors.password.message}</div>
           )}
 
           <label
-            htmlFor="confirm_user_password"
+            htmlFor="confirm_password"
             className="text-m font-medium text-neutral-700"
           >
             Confirm your password
@@ -195,13 +195,13 @@ export const SignUp = (): JSX.Element => {
           <input
             className="w-full p-2  border rounded focus:ring focus:ring-story"
             type="password"
-            id="confirm_user_password"
+            id="confirm_password"
             placeholder="********"
-            {...register("confirm_user_password")}
+            {...register("confirm_password")}
           />
-          {errors.confirm_user_password && (
+          {errors.confirm_password && (
             <div className="text-red-500">
-              {errors.confirm_user_password.message}
+              {errors.confirm_password.message}
             </div>
           )}
 
