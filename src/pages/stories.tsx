@@ -1,5 +1,4 @@
 import { StoryCard } from "@/components/storiesCard/StoryCard";
-import { Cookie } from "next/font/google";
 //import { stories } from "./../data/data";
 
 import { useEffect, useState } from "react";

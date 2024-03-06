@@ -1,13 +1,14 @@
-import StoryForm from "@/components/StoryForm";
 import { Inter } from "next/font/google";
-import StoriesContainer from "./stories";
+// import StoriesContainer from "./../components/";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const Home = (): JSX.Element => {
   return (
     <div>
-      <StoriesContainer />
+      <h2 className="text-3xl font-bold text-nav-font mb-6">
+        Welcome to MyStory
+      </h2>
     </div>
   );
 };

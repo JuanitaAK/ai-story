@@ -1,9 +1,9 @@
-import { SignUp } from "@/components/SignUp";
+import { SignUpForm } from "./../components/SignUp";
 
 const SignUpPage = (): JSX.Element => {
   return (
     <div>
-      <SignUp />
+      <SignUpForm />
     </div>
   );
 };

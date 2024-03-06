@@ -6,7 +6,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "./Loader";
 
-export type SignInFormData = {
+export type LoginForm = {
   user_mail: string;
   password: string;
 };
@@ -28,7 +28,7 @@ const schema = z
       "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character (@, $, !, %, *, ?, &).",
   });
 
-export const SignIn = (): JSX.Element => {
+export const LoginForm = (): JSX.Element => {
   const router = useRouter();
 
   const {
@@ -36,14 +36,12 @@ export const SignIn = (): JSX.Element => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<SignInFormData>({
+  } = useForm<LoginForm>({
     mode: "onSubmit",
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<SignInFormData> = async (
-    data: SignInFormData
-  ) => {
+  const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
     console.log(data);
     try {
       <Loader />;

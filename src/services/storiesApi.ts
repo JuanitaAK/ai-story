@@ -1,4 +1,4 @@
-import { Story } from "@/pages/stories";
+import { Story } from "./../pages/stories";
 import { StoryFormData } from "../components/StoryForm";
 
 export const createStory = async (story: StoryFormData) => {

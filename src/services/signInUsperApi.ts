@@ -1,6 +1,6 @@
-import { SignInFormData } from "@/components/SignIn";
+import { LoginForm } from "./../components/LoginForm";
 
-export const connectUser = async (user: SignInFormData) => {
+export const connectUser = async (user: LoginForm) => {
   const response = await fetch(
     process.env.SIGNIN_USER || "http://localhost:5000/auth/login", // "http://localhost:5000/login",
     {

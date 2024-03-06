@@ -1,4 +1,4 @@
-import Profile, { ProfilePageProps } from "@/components/Profile";
+import Profile, { ProfilePageProps } from "./../components/Profile";
 
 const ProfilePage = ({
   userData,

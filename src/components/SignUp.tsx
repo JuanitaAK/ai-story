@@ -52,7 +52,7 @@ const schema = z
     message: "Password don't match  ❌",
   });
 
-export const SignUp = (): JSX.Element => {
+export const SignUpForm = (): JSX.Element => {
   const router = useRouter();
 
   const {
