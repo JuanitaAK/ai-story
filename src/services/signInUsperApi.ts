@@ -13,7 +13,7 @@ export const connectUser = async (user: LoginForm) => {
   );
 
   if (!response.ok) {
-    throw new Error("Failed to create user... 😬 please try again later");
+    throw new Error("Failed to connect user... 😬 please try again later");
   }
 
   return response.json();

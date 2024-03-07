@@ -20,7 +20,9 @@ const schema = z
       .trim()
       .min(3, { message: "Email is required" })
       .email("This is not a valid email."),
-    password: z.string().min(3),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters long." }),
   })
   .refine((data) => passwordRequirements.test(data.password), {
     path: ["user_password"],
@@ -46,7 +48,16 @@ export const LoginForm = (): JSX.Element => {
     try {
       <Loader />;
       //router.push(`/loading`);
-      await connectUser(data);
+      // await connectUser(data);
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const resJson = await response.json();
+      console.log(resJson);
       await router.push(`/stories`);
     } catch (error) {
       setError("root", {
