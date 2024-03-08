@@ -1,18 +1,14 @@
-import { Story } from "./../pages/stories";
+import { Story } from "@/components/StoriesContainer";
 import { StoryFormData } from "../components/StoryForm";
 
 export const createStory = async (story: StoryFormData) => {
-  console.log("Creating Story:", story);
-  const response = await fetch(
-    process.env.STORY_FORM || "http://localhost:5000/story-form",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(story),
-    }
-  );
+  const response = await fetch("/api/stories", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(story),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to create story... 😬 please try again later");
@@ -22,14 +18,13 @@ export const createStory = async (story: StoryFormData) => {
 };
 
 export const deleteStory = async (id: string) => {
-  console.log("Trying to Deleting Story:", id);
   try {
-    const baseUrl = process.env.STORY_DELETE || `http://localhost:5000/story/`;
-    const url = new URL(id, baseUrl).toString();
-    console.log("Deleting Story:", url);
-
-    const response = await fetch(url, {
+    const response = await fetch("api/stories", {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id_story: id }),
     });
 
     if (!response.ok) {
@@ -64,25 +59,24 @@ export const getStories = async () => {
   }
 };
 
-export const patchTitle = async ({ id_story, title }: Story) => {
+export const patchTitle = async (story: Story) => {
   try {
-    const baseUrl = process.env.STORY_TITLE || `http://localhost:5000/story/`;
-    const url = new URL(id_story, baseUrl).toString();
-    console.log("Adding Title:", url);
-    const response = await fetch(url, {
+    const response = await fetch("api/stories", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(title),
+      body: JSON.stringify(story),
     });
 
     if (!response.ok) {
       const errorResponse = await response.json();
       throw new Error(
-        `Failed to add title to the story with ID ${id_story}. Server responded with ${
-          response.status
-        }: ${errorResponse.error || "Unknown error"}`
+        `Failed to add title to the story with ID ${
+          story.id_story
+        }. Server responded with ${response.status}: ${
+          errorResponse.error || "Unknown error"
+        }`
       );
     }
   } catch (err) {

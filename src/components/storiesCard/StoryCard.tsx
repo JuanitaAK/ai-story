@@ -1,4 +1,4 @@
-import { Story } from "@/pages/stories";
+import { Story } from "../../components/StoriesContainer";
 
 export const StoryCard = (props: Story): JSX.Element => {
   return (

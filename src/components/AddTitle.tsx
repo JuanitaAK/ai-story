@@ -1,30 +1,55 @@
-import { Story } from "@/pages/stories";
-import { patchTitle } from "@/services/storiesApi";
+import { Story } from "./StoriesContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { deleteStory, patchTitle } from "./../services/storiesApi";
+
 import { z } from "zod";
 
 const schema = z.object({
   title: z.string().trim().min(1, { message: "At list une letter or number" }),
 });
 
-export const AddTitle = ({ id_story }: { id_story: string }): JSX.Element => {
+type AddTitleProps = {
+  story: Story;
+};
+
+type TitleForm = { title: string };
+
+export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<Story>({
+  } = useForm<TitleForm>({
     mode: "onSubmit",
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Story> = async (title: Story) => {
+  const handleClickDelete = async (id_story: string) => {
     try {
+      await deleteStory(id_story);
+      await router.push(`/form`);
+    } catch (error) {
+      console.error("Failed to delete your story:", error);
+    }
+    if (errors) {
+      return (
+        <div className="story">
+          <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5 p-5">
+            Failed to delete your story!
+          </h3>
+        </div>
+      );
+    }
+  };
+
+  const onSubmit: SubmitHandler<TitleForm> = async (titleForm: TitleForm) => {
+    try {
+      await patchTitle({ ...story, title: titleForm.title });
       router.push(`/loading`);
-      await patchTitle({ id_story, title });
       await router.push(`/stories`);
     } catch (error) {
       setError("root", { message: "Something is missing in your form" });
@@ -54,21 +79,22 @@ export const AddTitle = ({ id_story }: { id_story: string }): JSX.Element => {
         {errors.title && (
           <div className="text-red-500">{errors.title.message}</div>
         )}
-
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-        >
-          Add Title
-        </button>
-        {/* <button
-          type="submit"
-          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-          onClick={() => setShowAddTitle(false)}
-        >
-          Close
-        </button> */}
+        <div className="buttons_container flex items-end gap-5  ml-5 mb-8">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          >
+            Add Title
+          </button>
+          <button
+            type="submit"
+            className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+            onClick={() => handleClickDelete(story.id_story)}
+          >
+            Delete Story
+          </button>
+        </div>
       </form>
     </div>
   );
