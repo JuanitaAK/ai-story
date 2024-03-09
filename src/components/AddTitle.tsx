@@ -62,7 +62,6 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
   };
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex p-32 justify-center items-center">
-      {/* <div className="flex flex-col space-y-4 text-font p-9 m-3 rounded-lg bg-tex-nav-font shadow-lg w-3/4 h-3/4"> */}
       <div className="flex flex-col space-y-4 w-full text-font p-6 m-6 rounded-lg bg-white shadow-lg">
         <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-nav-font">
           What title do you want to give the story ?
