@@ -46,9 +46,6 @@ export const LoginForm = (): JSX.Element => {
   const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
     console.log(data);
     try {
-      <Loader />;
-      //router.push(`/loading`);
-      // await connectUser(data);
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -56,6 +53,7 @@ export const LoginForm = (): JSX.Element => {
         },
         body: JSON.stringify(data),
       });
+      <Loader />;
       const resJson = await response.json();
       console.log(resJson);
       await router.push(`/stories`);

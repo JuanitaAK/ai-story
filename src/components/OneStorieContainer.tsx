@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { Story } from "./StoriesContainer";
 import { deleteStory } from "./../services/storiesApi";
+import { NoStoryCard } from "./storiesCard/NoStoryCard";
 
 const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
   const [error, setError] = useState<string | null>(null);
@@ -34,9 +35,7 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
   if (!story) {
     return (
       <div className="story">
-        <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 m-5 p-5">
-          You have no stories at the moment! Go ahead and create one!
-        </h3>
+        <NoStoryCard />
       </div>
     );
   }

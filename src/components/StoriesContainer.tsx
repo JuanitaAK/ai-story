@@ -1,3 +1,4 @@
+import { NoStoryCard } from "./storiesCard/NoStoryCard";
 import { StoryCard } from "./storiesCard/StoryCard";
 
 export type Story = {
@@ -12,9 +13,11 @@ const StoriesContainer = ({ stories }: { stories: Story[] }) => {
   if (!stories || stories.length === 0) {
     return (
       <div className="stories">
-        <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
+        <NoStoryCard />
+
+        {/* <h3 className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50 m-5 p-5">
           You have no stories at the moment! Go ahead and create one!
-        </h3>
+        </h3> */}
       </div>
     );
   }

@@ -61,41 +61,45 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
     }
   };
   return (
-    <div className="flex flex-col space-y-4 text-font p-6 m-3 rounded-lg bg-white shadow-lg">
-      <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-nav-font">
-        What title do you want to give the story ?
-      </h3>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col space-y-4"
-      >
-        <input
-          id="title"
-          {...register("title")}
-          placeholder="My little story"
-          type="text"
-          className=" w-full p-2 border rounded focus:ring focus:ring-story"
-        />
-        {errors.title && (
-          <div className="text-red-500">{errors.title.message}</div>
-        )}
-        <div className="buttons_container flex items-end gap-5  ml-5 mb-8">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-          >
-            Add Title
-          </button>
-          <button
-            type="submit"
-            className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-            onClick={() => handleClickDelete(story.id_story)}
-          >
-            Delete Story
-          </button>
-        </div>
-      </form>
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex p-32 justify-center items-center">
+      {/* <div className="flex flex-col space-y-4 text-font p-9 m-3 rounded-lg bg-tex-nav-font shadow-lg w-3/4 h-3/4"> */}
+      <div className="flex flex-col space-y-4 w-full text-font p-6 m-6 rounded-lg bg-white shadow-lg">
+        <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-nav-font">
+          What title do you want to give the story ?
+        </h3>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col space-y-4 p-3 my-6 mx-12"
+        >
+          <input
+            id="title"
+            {...register("title")}
+            placeholder="My little story"
+            type="text"
+            className=" w-full p-2 border rounded focus:ring focus:ring-story"
+          />
+          {errors.title && (
+            <div className="text-red-500">{errors.title.message}</div>
+          )}
+          <div className="buttons_container flex justify-end gap-5  ml-5 mb-8">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+            >
+              Add Title
+            </button>
+            <button
+              type="submit"
+              className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+              onClick={() => handleClickDelete(story.id_story)}
+            >
+              Delete Story
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+    // </div>
   );
 };

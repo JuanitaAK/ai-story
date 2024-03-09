@@ -62,15 +62,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
-
-  // if (!response.ok) {
-  //   const errorResponse = await response.json();
-  //   throw new Error(
-  //     `Failed to delete the story with ID ${id}. Server responded with ${
-  //       response.status
-  //     }: ${errorResponse.error || "Unknown error"}`
-  //   );
-  // }
 };
 
 export default handler;

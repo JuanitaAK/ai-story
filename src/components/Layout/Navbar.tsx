@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProfileExpander } from "../ProfileExpander";
-import StoryForm from "../../pages/form";
 import { useState } from "react";
 import logo from "../../../public/logo.png";
 

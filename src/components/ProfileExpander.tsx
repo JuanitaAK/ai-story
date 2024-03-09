@@ -20,7 +20,7 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
   const router = useRouter();
 
   const handleLogout = () => {
-    router.push("/");
+    router.push("/login");
     // Perform logout actions
   };
 
@@ -48,7 +48,20 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
           </div>
         </>
       ) : (
-        <button onClick={handleLogin}>Please login</button>
+        <div className="flex flex-col absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-50">
+          <button
+            onClick={handleLogin}
+            className="text-left px-4 py-2 hover:bg-gray-100"
+          >
+            Profile
+          </button>
+          <button
+            onClick={handleLogin}
+            className="text-left px-4 py-2 hover:bg-gray-100"
+          >
+            Logout
+          </button>
+        </div>
       )}
     </div>
   );
