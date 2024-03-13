@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
   const responseApi = await fetch("http://localhost:3003/sign-out");
   const resApiJson = responseApi.json();
 

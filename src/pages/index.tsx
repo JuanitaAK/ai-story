@@ -1,16 +1,22 @@
-import { Inter } from "next/font/google";
-// import StoriesContainer from "./../components/";
+import { NextPageContext } from "next";
+import LandingPage from "@/components/LandingPage";
+import cookie from "cookie";
 
-const inter = Inter({ subsets: ["latin"] });
+export default LandingPage;
 
-export const Home = (): JSX.Element => {
-  return (
-    <div>
-      <h2 className="text-3xl font-bold text-nav-font mb-6">
-        Welcome to MyStory
-      </h2>
-    </div>
-  );
+export const getServerSideProps = async (context: NextPageContext) => {
+  const cookies = cookie.parse(context.req?.headers.cookie || "");
+  const token = cookies["Auth-Token"];
+
+  if (token) {
+    return {
+      redirect: {
+        destination: "/stories",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
 };
-
-export default Home;

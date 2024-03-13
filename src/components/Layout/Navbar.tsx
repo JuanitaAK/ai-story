@@ -18,7 +18,10 @@ const Navbar = (): JSX.Element => {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 md:px-10 lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl ">
+    <nav
+      className=" Z-10 w-full sticky top-0 z-50 
+     lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl "
+    >
       <Image className="w-20 h-20 rounded-full" src={logo} alt="Story.com" />
 
       <div
@@ -62,8 +65,8 @@ const Navbar = (): JSX.Element => {
 
       <div className="sm:hidden">
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="text-3xl text-neutral-500 focus:outline-none"
+          onClick={() => setMenuOpen(menuOpen)}
+          className="text-3xl text-neutral-500 focus:outline-none mr-3"
         >
           {menuOpen ? "×" : "☰"}
         </button>

@@ -3,8 +3,6 @@ import cookie from "cookie";
 import axios from "axios";
 import StoriesContainer from "@/components/StoriesContainer";
 
-export default StoriesContainer;
-
 export const getServerSideProps = async (context: NextPageContext) => {
   const cookies = cookie.parse(context.req?.headers.cookie || "");
   const token = cookies["Auth-Token"];
@@ -12,7 +10,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   if (!token) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };
@@ -28,3 +26,5 @@ export const getServerSideProps = async (context: NextPageContext) => {
     return { props: { stories: [] } };
   }
 };
+
+export default StoriesContainer;

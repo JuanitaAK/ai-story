@@ -13,7 +13,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   if (!token) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };

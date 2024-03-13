@@ -1,5 +1,6 @@
 import { Story } from "@/components/StoriesContainer";
 import { StoryFormData } from "../components/StoryForm";
+import axios from "axios";
 
 export const createStory = async (story: StoryFormData) => {
   const response = await fetch("/api/stories", {
@@ -82,5 +83,18 @@ export const patchTitle = async (story: Story) => {
   } catch (err) {
     console.error(err);
     throw err;
+  }
+};
+
+export const deleteAuthToken = async (): Promise<void> => {
+  try {
+    const response = await axios({
+      method: "post", // Assuming logout is a POST request; adjust if necessary
+      url: "http://localhost:5000/auth/logout",
+      withCredentials: true, // This is important for including cookies in the request
+    });
+    console.log(response.data); // Handle the response data as needed
+  } catch (error) {
+    console.error("Logout failed", error);
   }
 };

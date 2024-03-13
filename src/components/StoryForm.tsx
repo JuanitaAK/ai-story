@@ -48,7 +48,6 @@ const StoryForm = (): JSX.Element => {
   const onSubmit: SubmitHandler<StoryFormData> = async (
     data: StoryFormData
   ) => {
-    console.log(data);
     try {
       router.push(`/loading`);
       await createStory(data);

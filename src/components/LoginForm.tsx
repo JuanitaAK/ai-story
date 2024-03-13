@@ -44,7 +44,6 @@ export const LoginForm = (): JSX.Element => {
   });
 
   const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
-    console.log(data);
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -55,7 +54,6 @@ export const LoginForm = (): JSX.Element => {
       });
       <Loader />;
       const resJson = await response.json();
-      console.log(resJson);
       await router.push(`/stories`);
     } catch (error) {
       setError("root", {
@@ -71,7 +69,7 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
-      <h2 className="text-3xl font-bold text-nav-font mb-6">Sign In</h2>
+      <h2 className="text-3xl font-bold text-nav-font mb-6  ">Sign In</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}

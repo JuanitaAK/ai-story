@@ -8,11 +8,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // backgroundImage: {
-      //   "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      //   "gradient-conic":
-      //     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      // },
+      backgroundImage: {
+        //   "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        //   "gradient-conic":
+        //     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "custom-gradient":
+          "linear-gradient(0deg, rgb(30, 12, 204), rgb(36, 152, 213), rgb(244, 244, 244))",
+      },
       colors: {
         "background-light": "#FFFFFF",
         background: "#FFFFFF",
@@ -26,7 +28,7 @@ const config: Config = {
         title: "#1E90FF",
       },
       fontFamily: {
-        sans: ["Arial", "sans-serif"],
+        sans: ["sans-serif", "Arial", "Helvetica"],
       },
       fontSize: {
         sm: "0.1rem",

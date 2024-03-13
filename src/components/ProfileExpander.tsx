@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import avatar from "../../public/fox_6249911.png";
+import { deleteAuthToken } from "@/services/storiesApi";
 
 export type ProfileExpanderProps = {
   userData: {
@@ -19,17 +20,22 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
 }): JSX.Element => {
   const router = useRouter();
 
-  const handleLogout = () => {
-    router.push("/login");
-    // Perform logout actions
+  const handleLogout = async () => {
+    deleteAuthToken();
+
+    try {
+      await router.push(`/`);
+    } catch (error) {
+      console.error("Failed to delete your story:", error);
+    }
   };
 
-  const handleLogin = () => {
+  const handlelProfile = () => {
     router.push("/profile");
   };
 
   return (
-    <div className="absolute top-16 right-4 bg-white p-4 border rounded-md shadow-lg">
+    <div className=" z-0 absolute top-14 right-4 bg-white border rounded-md shadow-lg hover:text-hove text-2xl">
       {userData.isLoggedIn ? (
         <>
           <div>
@@ -50,14 +56,14 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
       ) : (
         <div className="flex flex-col absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-50">
           <button
-            onClick={handleLogin}
-            className="text-left px-4 py-2 hover:bg-gray-100"
+            onClick={handlelProfile}
+            className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
             Profile
           </button>
           <button
-            onClick={handleLogin}
-            className="text-left px-4 py-2 hover:bg-gray-100"
+            onClick={handleLogout}
+            className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
             Logout
           </button>

@@ -49,18 +49,16 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
         <StoryCard {...story} />
       </div>
 
-      <div className="buttons_container flex gap-5  mx-5 mb-8">
-        <Link href="#title">
-          <button
-            type="submit"
-            className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-            onClick={() => {
-              setAddTitleOpen(!addTitleOpen);
-            }}
-          >
-            Save New Story
-          </button>
-        </Link>
+      <div className="buttons_container flex gap-5 mx-5 mb-8">
+        <button
+          type="submit"
+          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          onClick={() => {
+            setAddTitleOpen(!addTitleOpen);
+          }}
+        >
+          Save New Story
+        </button>
 
         <button
           type="submit"
