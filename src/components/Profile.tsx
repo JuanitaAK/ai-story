@@ -22,20 +22,20 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
     }
   };
 
+  const name = firstName + " " + lastName;
+
   return (
-    <div className="max-w-md mx-auto my-6 p-6 rounded-lg bg-white shadow-lg">
+    <div className="flex flex-col  mx-20  mt-10 justify-center my-6 p-6 rounded-lg bg-white shadow-lg ">
       <div className="mb-6 text-center">
         <Image
           src={avatar}
           alt="User Avatar"
           className="w-24 h-24 mx-auto rounded-full mb-4"
         />
-        <p className="sm:flex space-x-4">
-          {firstName}
-          HERE
-          {lastName}
-        </p>
-        <p className="text-gray-500">{email}</p>
+        <div className="flex flex-col items-center pb-3 ">
+          <p>{name}</p>
+          <p>{email}</p>
+        </div>
       </div>
 
       <button

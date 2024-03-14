@@ -29,6 +29,16 @@ const Navbar = (): JSX.Element => {
     }
   }, [router]);
 
+  useEffect(() => {
+    document.onclick = (e) => {
+      const target = e.target as HTMLElement;
+      if (target && !target.closest(".menu-btn")) {
+        setIsDropdownOpen(false);
+        setIsMenuOpen(false);
+      }
+    };
+  }, []);
+
   const handleLogout = () => {
     try {
       Cookies.remove("Auth-Token");
@@ -40,25 +50,28 @@ const Navbar = (): JSX.Element => {
   };
 
   return (
-    <nav className="Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg hover:text-hove text-2xl">
-      <div className="container mx-auto flex justify-between items-center ">
+    <nav className="menu-btn Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg hover:text-hove text-2xl">
+      <div className="container mx-auto flex justify-between items-center transition duration-300">
         <Link href="/" className="md=ml-3">
           <Image src={logo} alt="Logo Story.com" width={80} height={80} />
         </Link>
 
         {isLogged && (
+          // menu descktop
           <div>
             <div className="hidden md:flex space-x-4">
               <Link
                 href="/stories"
-                className="hover:bg-hover hover:text-white rounded-md px-3 "
+                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md px-3 py-3  "
+                onClick={() => setIsDropdownOpen(false)}
               >
                 Stories
               </Link>
 
               <Link
                 href="/form"
-                className="hover:bg-hover hover:text-white rounded-md px-3 "
+                className="hover:bg-hover hover:text-white transition duration-300 rounded-md px-3 py-3 "
+                onClick={() => setIsDropdownOpen(false)}
               >
                 New Story
               </Link>
@@ -66,22 +79,24 @@ const Navbar = (): JSX.Element => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="block px-4 rounded-md hover:text-white hover:bg-hover"
+                  className="block px-4 rounded-md hover:text-white transition duration-300 hover:bg-hover py-3"
                 >
-                  Accounts
+                  Account
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 py-2 bg-white w-48 shadow-lg">
+                  <div className="items-center bg-sky-400 text-white  transition duration-300 absolute right-0 mt-2 w-48 shadow-lg rounded-md  ">
+                    {/* desktooopp */}
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                      className="block px-4 py-2 rounded-md hover:text-white  hover:hover:bg-sky-800 transition duration-300"
+                      onClick={() => setIsDropdownOpen(false)}
                     >
                       Profile
                     </Link>
                     <Link
                       href="/"
                       onClick={handleLogout}
-                      className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                      className="block px-4 py-2 rounded-md hover:text-white hover:hover:bg-sky-800 transition duration-300"
                     >
                       Logout
                     </Link>
@@ -90,7 +105,7 @@ const Navbar = (): JSX.Element => {
               </div>
             </div>
 
-            <div className="md:hidden mr-4">
+            <div className=" md:hidden mr-4 block transition duration-300">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? "×" : "☰"}
               </button>
@@ -99,35 +114,41 @@ const Navbar = (): JSX.Element => {
         )}
 
         {isMenuOpen && isLogged && (
-          <div className="md:hidden">
+          <div className="md:hidden block ">
             <Link
               href="/stories"
-              className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
+              className="block hover:bg-hover hover:text-white rounded-md px-3 py-3 transition duration-300"
+              onClick={() => setIsMenuOpen(false)}
             >
               Stories
             </Link>
             <Link
               href="/form"
-              className="hover:bg-hover hover:text-white rounded-md px-3 py-2 "
+              className=" block hover:bg-hover hover:text-white rounded-md px-3 py-3 transition duration-300 "
+              onClick={() => setIsMenuOpen(false)}
             >
               New Story
             </Link>
-            <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="block px-4 rounded-md hover:text-white hover:bg-hover py-3 transition duration-300"
+            >
               Account
             </button>
 
             {isDropdownOpen && (
-              <div>
+              <div className="absolute items-center block right-0  rounded-xl bg-sky-400 text-white w-48 shadow-lg transition duration-300">
                 <Link
                   href="/profile"
-                  className="block hover:bg-hover hover:text-white rounded-md px-3 py-2"
+                  className="block hover:hover:bg-sky-800  hover:text-white rounded-md px-3 py-3 transition duration-300"
+                  onClick={() => setIsDropdownOpen(false)}
                 >
                   Profile
                 </Link>
                 <Link
                   href="/"
                   onClick={handleLogout}
-                  className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
+                  className="block  hover:hover:bg-sky-800  hover:text-white rounded-md px-3 py-3 transition duration-300"
                 >
                   Logout
                 </Link>

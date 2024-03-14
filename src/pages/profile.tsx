@@ -5,11 +5,7 @@ const ProfilePage = ({
 }: {
   userData: ProfilePageProps;
 }): JSX.Element => {
-  return (
-    <div>
-      <Profile {...userData} />
-    </div>
-  );
+  return <Profile {...userData} />;
 };
 
 export default ProfilePage;
