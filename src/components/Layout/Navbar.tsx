@@ -1,26 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import { deleteAuthToken } from "@/services/storiesApi";
-import router from "next/router";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const Navbar = (): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const router = useRouter();
 
-  const handleLogout = async () => {
-    deleteAuthToken();
+  //option if httpsOnly
+  // const handleLogout = async () => {
+  //   try {
+  //     deleteAuthToken();
+  //     await router.push(`/`);
+  //   } catch (error) {
+  //     console.error("Failed to logout:", error);
+  //   }
+  // };
 
+  useEffect(() => {
+    console.log(Cookies.get("Auth-Token"));
+    if (Cookies.get("Auth-Token")) {
+      setIsLogged(true);
+    }
+  }, [router]);
+
+  const handleLogout = () => {
     try {
-      await router.push(`/`);
+      Cookies.remove("Auth-Token");
+      setIsLogged(false);
+      router.replace(`/`);
     } catch (error) {
-      console.error("Failed to delete your story:", error);
+      console.error("Failed to logout:", error);
     }
   };
 
   return (
-    <nav className="Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 shadow-lg hover:text-hove text-2xl">
+    <nav className="Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg hover:text-hove text-2xl">
       <div className="container mx-auto flex justify-between items-center ml-6">
         <Link href="/">
           <Image
@@ -32,47 +52,49 @@ const Navbar = (): JSX.Element => {
           />
         </Link>
 
-        <div className="hidden md:flex space-x-4">
-          <Link
-            href="/stories"
-            className="hover:bg-hover hover:text-white rounded-md px-3 "
-          >
-            Stories
-          </Link>
-
-          <Link
-            href="/form"
-            className="hover:bg-hover hover:text-white rounded-md px-3 "
-          >
-            New Story
-          </Link>
-
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="block px-4 rounded-md hover:text-white hover:bg-hover"
+        {isLogged && (
+          <div className="hidden md:flex space-x-4">
+            <Link
+              href="/stories"
+              className="hover:bg-hover hover:text-white rounded-md px-3 "
             >
-              Account
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 py-2 bg-white w-48 shadow-lg">
-                <Link
-                  href="/profile"
-                  className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="/"
-                  onClick={handleLogout}
-                  className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
-                >
-                  Logout
-                </Link>
-              </div>
-            )}
+              Stories
+            </Link>
+
+            <Link
+              href="/form"
+              className="hover:bg-hover hover:text-white rounded-md px-3 "
+            >
+              New Story
+            </Link>
+
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="block px-4 rounded-md hover:text-white hover:bg-hover"
+              >
+                Accounts
+              </button>
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 py-2 bg-white w-48 shadow-lg">
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    href="/"
+                    onClick={handleLogout}
+                    className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="md:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>

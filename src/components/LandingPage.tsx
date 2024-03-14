@@ -3,9 +3,6 @@ import home from "./../../public/home.png";
 import Link from "next/link";
 
 const LandingPage = (): JSX.Element => {
-  {
-    /* className="bg-custom-gradient" */
-  }
   return (
     <div>
       <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font pt-6 mb-9">
@@ -21,7 +18,6 @@ const LandingPage = (): JSX.Element => {
         />
 
         <div className="Card-container lg:mt-12 bg-white p-6 rounded-lg shadow-lg bg-opacity-70 md:max-w-lg lg:w-auto mr-3 ">
-          {/* //md:max-w-lg  */}
           <p className="text-lg lg:text-2xl text-neutral-700">
             MyStory is a platform where you can create explore your creativity
             to create your own stories in a simple way and share it.
@@ -44,7 +40,6 @@ const LandingPage = (): JSX.Element => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

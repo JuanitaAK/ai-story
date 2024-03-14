@@ -23,8 +23,6 @@ export const getServerSideProps = async (context: NextPageContext) => {
     const response = await axios.get("http://localhost:5000/story", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log("Getting ONE sTORY", response.data);
-    //ASK ABOUT THIS
     if (response.status === 404) {
       return {
         redirect: {
