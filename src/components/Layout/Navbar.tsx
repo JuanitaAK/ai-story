@@ -1,33 +1,87 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ProfileExpander } from "../ProfileExpander";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import logo from "../../../public/logo.png";
-
-// Mock user data for demonstration purposes
-const userData = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john.doe@example.com",
-  avatar: "https://example.com/avatar.jpg",
-  isLoggedIn: false, // Set this to true if the user is logged in
-};
+import { deleteAuthToken } from "@/services/storiesApi";
+import router from "next/router";
 
 const Navbar = (): JSX.Element => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleLogout = async () => {
+    deleteAuthToken();
+
+    try {
+      await router.push(`/`);
+    } catch (error) {
+      console.error("Failed to delete your story:", error);
+    }
+  };
 
   return (
-    <nav
-      className=" Z-10 w-full sticky top-0 z-50 
-     lg:px-24 xl:px-32 flex items-center justify-between bg-navbar text-text-gray-200 shadow-lg hover:text-hove text-2xl "
-    >
-      <Image className="w-20 h-20 rounded-full" src={logo} alt="Story.com" />
+    <nav className="Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 shadow-lg hover:text-hove text-2xl">
+      <div className="container mx-auto flex justify-between items-center ml-6">
+        <Link href="/">
+          <Image
+            className="m-0"
+            src={logo}
+            alt="Logo Story.com"
+            width={80}
+            height={80}
+          />
+        </Link>
 
-      <div
-        className={`sm:flex sm:items-center ${menuOpen ? "flex" : "hidden"}`}
-      >
-        <div className="sm:flex space-x-4 text-nav-font font-semibold text-lg ">
+        <div className="hidden md:flex space-x-4">
+          <Link
+            href="/stories"
+            className="hover:bg-hover hover:text-white rounded-md px-3 "
+          >
+            Stories
+          </Link>
+
+          <Link
+            href="/form"
+            className="hover:bg-hover hover:text-white rounded-md px-3 "
+          >
+            New Story
+          </Link>
+
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="block px-4 rounded-md hover:text-white hover:bg-hover"
+            >
+              Account
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 py-2 bg-white w-48 shadow-lg">
+                <Link
+                  href="/profile"
+                  className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                >
+                  Profile
+                </Link>
+                <Link
+                  href="/"
+                  onClick={handleLogout}
+                  className="block px-4 py-2 rounded-md hover:text-white hover:bg-hover"
+                >
+                  Logout
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? "×" : "☰"}
+          </button>
+        </div>
+      </div>
+      {isMenuOpen && (
+        <div className="md:hidden">
           <Link
             href="/stories"
             className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
@@ -40,38 +94,28 @@ const Navbar = (): JSX.Element => {
           >
             New Story
           </Link>
-          <button
-            onClick={() => setProfileOpen(!profileOpen)}
-            className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.8}
-              stroke="currentColor"
-              className="w-8 h-8"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            {/* <a href="https://fr.freepik.com/search?format=search&last_filter=query&last_value=avatar+fox&query=avatar+fox&type=icon">Icône de Freepik</a> */}
+          <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            Account
           </button>
+          {isDropdownOpen && (
+            <div>
+              <Link
+                href="/profile"
+                className="block hover:bg-hover hover:text-white rounded-md px-3 py-2"
+              >
+                Profile
+              </Link>
+              <Link
+                href="/"
+                onClick={handleLogout}
+                className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
+              >
+                Logout
+              </Link>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className="sm:hidden">
-        <button
-          onClick={() => setMenuOpen(menuOpen)}
-          className="text-3xl text-neutral-500 focus:outline-none mr-3"
-        >
-          {menuOpen ? "×" : "☰"}
-        </button>
-      </div>
-      {profileOpen && <ProfileExpander userData={userData} />}
+      )}
     </nav>
   );
 };

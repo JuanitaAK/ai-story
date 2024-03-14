@@ -8,19 +8,20 @@ const LandingPage = (): JSX.Element => {
   }
   return (
     <div>
-      {/* // <div className="bg-gradient-to-b from-white to-blue-500"> */}
-      <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font mb-9">
+      <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font pt-6 mb-9">
         MyStory.com
       </h2>
 
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+      <div className="flex flex-col lg:flex-row gap-20 items-center mb-6 p-3">
         <Image
           src={home}
           alt="Family reading a book"
           className=" rounded-lg left-6"
+          width={700}
         />
 
-        <div className="Card-container m-3 lg:mt-12 bg-white p-6 rounded-lg shadow-lg bg-opacity-70  max-w-lg  ">
+        <div className="Card-container lg:mt-12 bg-white p-6 rounded-lg shadow-lg bg-opacity-70 md:max-w-lg lg:w-auto mr-3 ">
+          {/* //md:max-w-lg  */}
           <p className="text-lg lg:text-2xl text-neutral-700">
             MyStory is a platform where you can create explore your creativity
             to create your own stories in a simple way and share it.

@@ -55,7 +55,7 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
         </>
       ) : (
         <div className="flex flex-col absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-50">
-          <button
+          {/* <button
             onClick={handlelProfile}
             className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
@@ -66,7 +66,7 @@ export const ProfileExpander: React.FC<ProfileExpanderProps> = ({
             className="hover:bg-hover hover:text-white rounded-md px-3 py-2"
           >
             Logout
-          </button>
+          </button> */}
         </div>
       )}
     </div>

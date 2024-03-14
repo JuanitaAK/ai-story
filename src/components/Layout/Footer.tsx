@@ -2,16 +2,16 @@ import Link from "next/link";
 
 const Footer = (): JSX.Element => {
   return (
-    <div className="flex sm:justify-end justify-center py-3 px-3 bg-bgFooter shadow-lg text-gray-200 lg:px-24 xl:px-32">
+    <div className="flex sm:justify-end justify-center items-center gap-4 py-3 px-5 pr-20 bg-bgFooter shadow-lg text-2xl text-gray-200  sm:mb-0 ">
       <Link
         href="/about"
-        className="hover:bg-hover hover:text-white rounded-md py-2 text-base sm:text-xl font-medium mb-2 sm:mb-0 mr-4"
+        className="hover:bg-hover hover:text-white rounded-md py-2 font-medium mb-2 mr-4"
       >
         About Story.com
       </Link>
       <Link
         href="/contact"
-        className="hover:bg-hover hover:text-white rounded-md  py-2 text-base sm:text-xl font-medium mb-2 sm:mb-0 mr-4"
+        className="hover:bg-hover hover:text-white rounded-md  py-2 font-medium mb-2  mr-4"
       >
         Contact
       </Link>
