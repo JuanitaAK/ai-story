@@ -25,7 +25,8 @@ export const Loader = (): JSX.Element => {
           className="text-blue-500"
         ></path>
       </svg>
-      Give me a sec... 👀
+
+      <div className="m-8 relative space-y-4">Give me a sec... 👀</div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const StoriesContainer = ({ stories }: { stories: Story[] }) => {
   }
   return (
     <div className="stories">
-      <h3 className="mb-2 text-3xl font-bold leading-tight text-nav-font dark:text-neutral-50 m-5">
+      <h3 className="mb-2 text-3xl font-bold leading-tight text-nav-font m-5">
         Your Stories
       </h3>
       <div className="stories__container whitespace-pre-line">

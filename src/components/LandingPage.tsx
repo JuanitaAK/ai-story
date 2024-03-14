@@ -23,7 +23,7 @@ const LandingPage = (): JSX.Element => {
             to create your own stories in a simple way and share it.
           </p>
           <div>
-            <div className="buttons_container flex items-center flex-col lg:flex-row gap-5 m-5 py-5">
+            <div className="buttons_container flex  flex-col lg:flex-row gap-5 m-5 py-5">
               <Link href="/login">
                 <button className="self-end w-full lg:w-48 py-2 px-10 lg:text-2xl text-white rounded-md bg-button hover:bg-hover transition duration-300">
                   Login

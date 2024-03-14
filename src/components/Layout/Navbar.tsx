@@ -41,15 +41,9 @@ const Navbar = (): JSX.Element => {
 
   return (
     <nav className="Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg hover:text-hove text-2xl">
-      <div className="container mx-auto flex justify-between items-center ml-6">
-        <Link href="/">
-          <Image
-            className="m-0"
-            src={logo}
-            alt="Logo Story.com"
-            width={80}
-            height={80}
-          />
+      <div className="container mx-auto flex justify-between items-center ">
+        <Link href="/" className="md=ml-3">
+          <Image src={logo} alt="Logo Story.com" width={80} height={80} />
         </Link>
 
         {isLogged && (
@@ -96,7 +90,7 @@ const Navbar = (): JSX.Element => {
               </div>
             </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden mr-4">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? "×" : "☰"}
               </button>
@@ -121,6 +115,7 @@ const Navbar = (): JSX.Element => {
             <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
               Account
             </button>
+
             {isDropdownOpen && (
               <div>
                 <Link
