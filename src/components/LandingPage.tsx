@@ -9,7 +9,7 @@ const LandingPage = (): JSX.Element => {
   return (
     <div>
       {/* // <div className="bg-gradient-to-b from-white to-blue-500"> */}
-      <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font mb-6">
+      <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font mb-9">
         MyStory.com
       </h2>
 
