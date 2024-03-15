@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
-import { deleteAuthToken } from "@/services/storiesApi";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
@@ -62,15 +61,15 @@ const Navbar = (): JSX.Element => {
             <div className="hidden md:flex space-x-4">
               <Link
                 href="/stories"
-                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md px-3 py-3  "
+                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md p-3  "
                 onClick={() => setIsDropdownOpen(false)}
               >
-                Stories
+                Stories Desk
               </Link>
 
               <Link
                 href="/form"
-                className="hover:bg-hover hover:text-white transition duration-300 rounded-md px-3 py-3 "
+                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md p-3 "
                 onClick={() => setIsDropdownOpen(false)}
               >
                 New Story
@@ -79,7 +78,7 @@ const Navbar = (): JSX.Element => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="block px-4 rounded-md hover:text-white transition duration-300 hover:bg-hover py-3"
+                  className="block p-3 rounded-md hover:text-white transition duration-300 hover:bg-hover"
                 >
                   Account
                 </button>
@@ -91,7 +90,7 @@ const Navbar = (): JSX.Element => {
                       className="block px-4 py-2 rounded-md hover:text-white  hover:hover:bg-sky-800 transition duration-300"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Profile
+                      Profile DEsk
                     </Link>
                     <Link
                       href="/"
@@ -105,8 +104,13 @@ const Navbar = (): JSX.Element => {
               </div>
             </div>
 
-            <div className=" md:hidden mr-4 block transition duration-300">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className=" relative md:hidden block transition duration-300">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="z-50 p-3  text-nav-font"
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+              >
                 {isMenuOpen ? "×" : "☰"}
               </button>
             </div>
@@ -114,36 +118,38 @@ const Navbar = (): JSX.Element => {
         )}
 
         {isMenuOpen && isLogged && (
-          <div className="md:hidden block ">
+          // <div className="fixed bg-black flex p-32 justify-center items-center">
+          <div className=" fixed md:hidden block right-4 mt-40 w-48 bg-sky-800 shadow-xl rounded-lg">
             <Link
               href="/stories"
-              className="block hover:bg-hover hover:text-white rounded-md px-3 py-3 transition duration-300"
+              className="block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Stories
+              Stories BG
             </Link>
             <Link
               href="/form"
-              className=" block hover:bg-hover hover:text-white rounded-md px-3 py-3 transition duration-300 "
+              className=" block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300 "
               onClick={() => setIsMenuOpen(false)}
             >
               New Story
             </Link>
-            <button
+            <Link
+              href={""}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="block px-4 rounded-md hover:text-white hover:bg-hover py-3 transition duration-300"
+              className="block hover:bg-hover rounded-md hover:text-white p-3 transition duration-300"
             >
               Account
-            </button>
+            </Link>
 
             {isDropdownOpen && (
-              <div className="absolute items-center block right-0  rounded-xl bg-sky-400 text-white w-48 shadow-lg transition duration-300">
+              <div className=" fixed mt-5justify-center block right-15 rounded-xl bg-sky-400 text-white w-48 shadow-lg transition duration-300">
                 <Link
                   href="/profile"
-                  className="block hover:hover:bg-sky-800  hover:text-white rounded-md px-3 py-3 transition duration-300"
+                  className="block px-4 py-2 hover:hover:bg-sky-800  hover:text-white rounded-md transition duration-300"
                   onClick={() => setIsDropdownOpen(false)}
                 >
-                  Profile
+                  Profile Bg
                 </Link>
                 <Link
                   href="/"
