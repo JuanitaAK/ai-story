@@ -64,7 +64,7 @@ const Navbar = (): JSX.Element => {
                 className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md p-3  "
                 onClick={() => setIsDropdownOpen(false)}
               >
-                Stories Desk
+                Stories
               </Link>
 
               <Link
@@ -90,7 +90,7 @@ const Navbar = (): JSX.Element => {
                       className="block px-4 py-2 rounded-md hover:text-white  hover:hover:bg-sky-800 transition duration-300"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Profile DEsk
+                      Profile
                     </Link>
                     <Link
                       href="/"
@@ -125,7 +125,7 @@ const Navbar = (): JSX.Element => {
               className="block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Stories BG
+              Stories
             </Link>
             <Link
               href="/form"
@@ -149,7 +149,7 @@ const Navbar = (): JSX.Element => {
                   className="block px-4 py-2 hover:hover:bg-sky-800  hover:text-white rounded-md transition duration-300"
                   onClick={() => setIsDropdownOpen(false)}
                 >
-                  Profile Bg
+                  Profile
                 </Link>
                 <Link
                   href="/"
