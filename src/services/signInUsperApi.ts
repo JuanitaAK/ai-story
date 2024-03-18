@@ -1,4 +1,4 @@
-import { LoginForm } from "./../components/LoginForm";
+import { LoginForm } from "../components/organismes/LoginForm";
 
 export const connectUser = async (user: LoginForm) => {
   const response = await fetch(

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Story } from "../../components/StoriesContainer";
+import { Story } from "../../pages/Stories/StoriesContainer";
 
 export const StoryCard = (props: Story): JSX.Element => {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -1,5 +1,5 @@
-import { Story } from "@/components/StoriesContainer";
-import { StoryFormData } from "../components/StoryForm";
+import { Story } from "@/components/pages/Stories/StoriesContainer";
+import { StoryFormData } from "../components/organismes/StoryForm";
 import axios from "axios";
 
 export const createStory = async (story: StoryFormData) => {

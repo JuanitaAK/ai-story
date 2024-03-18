@@ -1,7 +1,7 @@
 import { NextPageContext } from "next";
 import cookie from "cookie";
 import axios from "axios";
-import StoriesContainer from "@/components/StoriesContainer";
+import StoriesContainer from "@/components/pages/Stories/StoriesContainer";
 
 export const getServerSideProps = async (context: NextPageContext) => {
   const cookies = cookie.parse(context.req?.headers.cookie || "");

@@ -1,9 +1,9 @@
-import { NoStoryCard } from "./storiesCard/NoStoryCard";
-import { StoryCard } from "./storiesCard/StoryCard";
+import { NoStoryCard } from "../../organismes/storiesCard/NoStoryCard";
+import { StoryCard } from "../../organismes/storiesCard/StoryCard";
 
 export type Story = {
   id_story: string;
-  story?: string;
+  story: string;
   user_id?: string;
   created_at?: Date | string;
   title?: string;

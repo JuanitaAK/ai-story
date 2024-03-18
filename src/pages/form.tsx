@@ -1,7 +1,7 @@
 import { NextPageContext } from "next";
 import cookie from "cookie";
 
-import StoryForm from "./../components/StoryForm";
+import StoryForm from "../components/organismes/StoryForm";
 
 export default StoryForm;
 

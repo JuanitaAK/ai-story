@@ -1,4 +1,4 @@
-import { SignUpFormData } from "@/components/SignUp";
+import { SignUpFormData } from "@/components/organismes/SignUp";
 
 export const createUser = async (user: SignUpFormData) => {
   const response = await fetch("/api/auth/signup", {

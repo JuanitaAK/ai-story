@@ -3,8 +3,8 @@ import { AddTitle } from "./AddTitle";
 import { StoryCard } from "./storiesCard/StoryCard";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Story } from "./StoriesContainer";
-import { deleteStory } from "./../services/storiesApi";
+import { Story } from "../pages/Stories/StoriesContainer";
+import { deleteStory } from "../../services/storiesApi";
 import { NoStoryCard } from "./storiesCard/NoStoryCard";
 
 const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {

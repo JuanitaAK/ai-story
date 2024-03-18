@@ -1,8 +1,8 @@
-import { Story } from "./StoriesContainer";
+import { Story } from "../pages/Stories/StoriesContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { deleteStory, patchTitle } from "./../services/storiesApi";
+import { deleteStory, patchTitle } from "../../services/storiesApi";
 
 import { z } from "zod";
 

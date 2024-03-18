@@ -1,4 +1,4 @@
-import { LoginForm } from "./../components/LoginForm";
+import { LoginForm } from "../components/organismes/LoginForm";
 
 const LogInPage = (): JSX.Element => {
   return (
