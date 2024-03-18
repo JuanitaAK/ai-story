@@ -1,5 +1,5 @@
 import { NextPageContext } from "next";
-import LandingPage from "@/components/LandingPage";
+import LandingPage from "@/components/Home/LandingPage";
 import cookie from "cookie";
 
 export default LandingPage;

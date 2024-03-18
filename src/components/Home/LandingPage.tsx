@@ -1,6 +1,6 @@
 import Image from "next/image";
-import home from "./../../public/home.png";
-import brand from "./../../public/brand.png";
+import home from "./../../../public/home.png";
+import brand from "./../../../public/brand.png";
 import Link from "next/link";
 
 const LandingPage = (): JSX.Element => {
