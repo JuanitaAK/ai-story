@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: |
           echo "Running tests for ${{ matrix.package }}"
-          npm run test-unit
+          cd ${{ matrix.package }} && npm run test-unit
   # pnpm run test-unit
   # pnpm install
   deploy-test:
