@@ -1,0 +1,27 @@
+### Get main page
+GET http://localhost:5000
+
+#### get all stories
+GET http://localhost:5000/stories
+
+#### get story by id
+GET http://localhost:5000/stories/01
+
+### send user data
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "123456"
+}
+### send user signup data
+POST http://localhost:5000/signup
+Content-Type: application/json
+{
+    name: "testName",
+    lastname: "testLast",
+    email: "test@g.com"
+    password: "123456"
+}
+

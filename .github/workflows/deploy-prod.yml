@@ -11,24 +11,27 @@ jobs:
   build-test:
     name: Build and test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [frontend, backend]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.release.target_commitish }}
-          fetch-depth: 0
       - name: Build and test
         run: |
-          echo "Building and testing"
-          # pnpm install
-          # pnpm run test-unit
+          echo "Building and testing ${{ matrix.package }}"
+          cd ${{ matrix.package }} && npm install
+
   deploy-prod:
-    name: Deploy to PROD
+    name: 🚀 Deploy
     runs-on: ubuntu-latest
     needs: build-test
+    strategy:
+      matrix:
+        package: [frontend, backend]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Deploy to test environment
         run: |
-          echo "Deploying to prod environment"
+          echo "Deploying to prod environment ${{ matrix.package }}"

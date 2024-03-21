@@ -1,7 +1,7 @@
 import React from "react";
 import avatar from "../../public/fox_6249911.png";
 import Image from "next/image";
-import { userData } from "./../data/userData";
+import { userData } from "../data/userData";
 import { deleteAuthToken } from "@/services/storiesApi";
 import router from "next/router";
 
