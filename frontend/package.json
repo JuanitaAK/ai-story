@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "test-unit": "jest",
-    "test": "jest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
