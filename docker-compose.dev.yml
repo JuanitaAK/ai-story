@@ -1,0 +1,34 @@
+version: "1"
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000" # Next.js default port
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+
+    ports:
+      - "5000:5000" # The port of the backend
+    environment:
+      - NODE_ENV=production # Add other backend environment variables
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: yourdbname
+      POSTGRES_USER: yourdbuser
+      POSTGRES_PASSWORD: yourdbpassword
+    ports:
+      - "5432:5432" # PostgreSQL default port
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

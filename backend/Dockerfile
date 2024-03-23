@@ -1,15 +1,29 @@
-FROM node:18.16.0-alpine3.17
+FROM node:18-alpine
+#as base
 
-RUN mkdir -p /mystory/back-app
+WORKDIR /app/backend
 
-WORKDIR /mystory/back-app
-
-COPY src/package.json src/package-lock.json 
+COPY package*.json ./
 
 RUN npm install
 
-COPY src/ .
+COPY . .
+
+RUN npm run build
 
 EXPOSE 5000
 
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]
+
+# #Production step
+# FROM base as production
+
+# ENV NODE_PATH=./build
+
+# RUN npm run build
+
+# EXPOSE 5000
+
+# CMD [ "npm", "start" ]
+
+# https://dev.to/dariansampare/setting-up-docker-typescript-node-hot-reloading-code-changes-in-a-running-container-2b2f
