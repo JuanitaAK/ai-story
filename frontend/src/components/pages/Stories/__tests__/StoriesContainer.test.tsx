@@ -23,6 +23,14 @@ describe("StoriesContainer", () => {
       />
     );
     const story = screen.getByText("This is a story");
-    expect(story).toBeInTheDocument();
+    expect(story).toBeVisible();
+  });
+
+  it("should render noStoryCard if stories array is empty", () => {
+    render(<StoriesContainer stories={[]} />);
+    const heading = screen.getByRole("heading", {
+      name: "You have no stories at the moment!",
+    });
+    expect(heading).toBeVisible();
   });
 });
