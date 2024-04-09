@@ -22,7 +22,7 @@ const Navbar = (): JSX.Element => {
   // };
 
   useEffect(() => {
-    console.log(Cookies.get("Auth-Token"));
+    // console.log(Cookies.get("Auth-Token"));
     if (Cookies.get("Auth-Token")) {
       setIsLogged(true);
     }

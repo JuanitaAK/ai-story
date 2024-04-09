@@ -44,9 +44,7 @@ export const deleteStory = async (id: string) => {
 
 export const getStories = async () => {
   try {
-    const response = await fetch(
-      process.env.STORY_FORM || "http://localhost:5000/story-form"
-    );
+    const response = await fetch(process.env.STORY_FORM as string);
 
     if (!response.ok) {
       throw new Error("Failed to load stories... 😬 please try again later");
@@ -86,14 +84,15 @@ export const patchTitle = async (story: Story) => {
   }
 };
 
+// Use to delete the Auth-Token cookie if https Only is set to true
 export const deleteAuthToken = async (): Promise<void> => {
   try {
     const response = await axios({
-      method: "post", // Assuming logout is a POST request; adjust if necessary
-      url: "http://localhost:5000/auth/logout",
-      withCredentials: true, // This is important for including cookies in the request
+      method: "post",
+      url: process.env.SIGNOUT_USER as string,
+      withCredentials: true,
     });
-    console.log(response.data); // Handle the response data as needed
+    console.log(response.data);
   } catch (error) {
     console.error("Logout failed", error);
   }

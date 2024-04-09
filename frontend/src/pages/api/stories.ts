@@ -5,11 +5,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const AuthToken = req.cookies["Auth-Token"];
-      const response = await axios.post(
-        "http://localhost:5000/story-form",
-        req.body,
-        { headers: { Authorization: `Bearer ${AuthToken}` } }
-      );
+      const url = process.env.STORY_FORM;
+      const response = await axios.post(url as string, req.body, {
+        headers: { Authorization: `Bearer ${AuthToken}` },
+      });
       res.status(200).json(response.data);
     } catch (error) {
       if (error instanceof AxiosError) {

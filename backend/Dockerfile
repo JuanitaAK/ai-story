@@ -1,18 +1,27 @@
-FROM node:18-alpine
-#as base
+FROM node:18-slim
 
-WORKDIR /app/backend
+ARG UID
+ARG GID
 
-COPY package*.json ./
+ENV NODE-ENV=development
 
-RUN npm install
+WORKDIR /var/app
 
-COPY . .
+# COPY package*.json ./
 
+# RUN npm install
 
-EXPOSE 5000
+# COPY . .
 
-CMD [ "npm", "start" ]
+RUN grep -c ${UID}:${GID} /etc/passwd \
+    || ((grep -c :${GID}: /etc/group || groupadd -g ${GID} app) \
+    && useradd -l -u ${UID} -ms /bin/bash -g ${GID} app \
+    && mkdir -p /home/app/.pnpm && chown -R ${UID}:${GID} /home/app)
+
+USER ${UID}:${GID}
+
+CMD ["npm", "start" ]
+
 
 # #Production step
 # FROM base as production

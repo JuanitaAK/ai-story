@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import axios, { AxiosError } from "axios";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const url: string = process.env.SIGNIN_USER || "";
+  const url: string = process.env.SIGNIN_USER as string;
   if (req.method === "POST") {
     try {
       const response = await axios.post(url, req.body);

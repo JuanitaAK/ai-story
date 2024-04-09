@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-unit": "echo \"To implement\"",
-    "start": "nodemon src/app.ts"
+    "start": "npm i --include=dev && nodemon -L src/app.ts"
   },
   "author": "JuanitaAK",
   "license": "ISC",

@@ -1,0 +1,60 @@
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    ports:
+      - "5000:5000" # The port of the backend
+    volumes:
+      - ./backend:/var/app
+      - /var/app/node_modules
+    env_file:
+      - ./backend/.env.docker
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/var/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - ./frontend/.env.docker
+    ports:
+      - "3000:3000"
+#     depends_on:
+#       - db
+#   db:
+#     image: postgres:latest
+#     env_file:
+#       - ./backend/.env.docker
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
+#     name: my-story-db
+
+# frontend-dev:
+#   build:
+#     context: ./frontend
+#     dockerfile: Dockerfile.dev
+#   ports:
+#     - "3000:3000"
+#   volumes:
+#     - ./frontend:/var/app
+#     - /var/app/node_modules
+#   env_file:
+#     - ./frontend/.env.local
+# frontend-prod:
+#   build:
+#     context: ./frontend
+#     dockerfile: Dockerfile.prod
+#   ports:
+#     - "4000:4000"
+#   env_file:
+#     - ./frontend/.env.docker
+#   command: ["node", ".next/standalone/server.js"]

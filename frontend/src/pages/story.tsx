@@ -20,7 +20,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   }
 
   try {
-    const response = await axios.get("http://localhost:5000/story", {
+    const response = await axios.get(process.env.STORY as string, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 404) {

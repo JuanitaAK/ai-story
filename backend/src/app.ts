@@ -11,7 +11,7 @@ import { auth } from "./middlewares/auth";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.use(helmet());
 app.use(cors());
@@ -23,8 +23,7 @@ app.use("/stories", auth, storiesRouter);
 app.use("/story-form", auth, storiesFormRouter);
 app.use("/story", auth, storyRouter);
 app.get("/", (req: Request, res: Response) => {
-  res.send("This is the HomePage");
-  res.sendStatus(200);
+  res.status(200).send("This is the backend server for the app.");
 });
 
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => console.log(`Server is running on port test ${port}`));

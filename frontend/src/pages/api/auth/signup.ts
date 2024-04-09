@@ -5,7 +5,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/signup",
+        process.env.CREATE_USER as string,
         req.body
       );
       res.status(200).json(response.data);
