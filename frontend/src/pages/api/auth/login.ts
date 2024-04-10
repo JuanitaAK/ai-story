@@ -10,12 +10,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         res.setHeader("Set-Cookie", response.headers["set-cookie"]);
       res.status(200).json(response.data);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        res
-          .status(error.status || 500)
-          .json({ error: "Internal Server Error" });
+      // if (error instanceof AxiosError) {
+      //   res
+      //     .status(error.status || 500)
+      //     .json({ error: "Internal Server Error" });
+      // }
+
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status || 500;
+        if (status === 401) {
+          res
+            .status(401)
+            .json({ message: "Unauthorized access. Redirecting to homepage." });
+        } else {
+          res
+            .status(status)
+            .json({ error: error.message || "Internal Server Error" });
+        }
+      } else {
+        res.status(500).json({ error: "Internal Server Error" });
       }
-      res.status(500).json({ error: "Internal Server Error" });
     }
   }
 };

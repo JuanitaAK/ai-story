@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "./Loader";
+import { useState } from "react";
 
 export type LoginForm = {
   user_mail: string;
@@ -31,6 +32,7 @@ const schema = z
   });
 
 export const LoginForm = (): JSX.Element => {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const {
@@ -45,6 +47,7 @@ export const LoginForm = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
     try {
+      setIsLoading(true);
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -52,9 +55,14 @@ export const LoginForm = (): JSX.Element => {
         },
         body: JSON.stringify(data),
       });
-      <Loader />;
       const resJson = await response.json();
-      await router.push(`/stories`);
+      setIsLoading(false);
+      console.log(resJson);
+      if (response.status === 200) {
+        router.push(`/stories`);
+      } else {
+        router.push(`/`);
+      }
     } catch (error) {
       setError("root", {
         message: "Something is with wrong with your mail or password",
@@ -69,6 +77,12 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
+      {isLoading && (
+        <div className="absolute inset-0 bg-white  flex justify-center items-center z-50">
+          {/* bg-opacity-50 */}
+          <Loader />
+        </div>
+      )}
       <h2 className="text-3xl font-bold text-nav-font mb-6  ">Sign In</h2>
 
       <form

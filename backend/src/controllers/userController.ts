@@ -35,7 +35,6 @@ export const signup = async (req: Request, res: Response) => {
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
-
     await postSignUpFormInput(user);
     return res.status(201).json({ message: "User created successfully" });
   } catch (error) {
@@ -58,7 +57,6 @@ export const login = async (req: Request, res: Response) => {
         expiresIn: AUTH_TOKEN_EXPIRY_IN_SECONDS,
       });
       const result = { userId: user.user_id, token: token };
-
       res.header(
         "set-cookie",
         `Auth-Token=${token}; SameSite=Lax; Secure; path=/; expires=${
@@ -68,6 +66,7 @@ export const login = async (req: Request, res: Response) => {
       res.status(200).json({ userId: user.user_id });
     } else {
       res.status(401).json({ success: false, message: "Invalid credentials" });
+      console.log("Invalid credentials");
     }
   } catch (error) {
     console.error(error);
