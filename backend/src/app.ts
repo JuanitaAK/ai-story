@@ -2,9 +2,10 @@ import express, { Request, Response } from "express";
 import helmet from "helmet";
 import * as dotenv from "dotenv";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 
-import storiesRouter from "./routes/storiesRoutes";
-import storiesFormRouter from "./routes/storiesFormRouter";
+// import storiesRouter from "./routes/storiesRoutes";
+// import storiesFormRouter from "./routes/storiesFormRouter";
 import userRouter from "./routes/userRouter";
 import storyRouter from "./routes/storyRouter";
 import { auth } from "./middlewares/auth";
@@ -19,8 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", userRouter);
-app.use("/stories", auth, storiesRouter);
-app.use("/story-form", auth, storiesFormRouter);
 app.use("/story", auth, storyRouter);
 app.get("/", (req: Request, res: Response) => {
   res.status(200).send("This is the backend server for the app.");
