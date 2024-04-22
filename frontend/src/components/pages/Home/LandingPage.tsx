@@ -5,42 +5,42 @@ import Link from "next/link";
 
 const LandingPage = (): JSX.Element => {
   return (
-    <div>
-      {/* <h2 className=" text-center text-3xl lg:text-5xl font-bold text-nav-font pt-6 mb-9">
+    <div className="m-6 space-y-4 ">
+      <h1 className="  font-mono text-center text-4xl md:text-8xl font-bold text-nav-font pt-6 mb-9">
         MyStory.com
-      </h2> */}
+      </h1>
+      {/* <Image
+        src={brand}
+        className="title-container md:col-start-1 md:col-span-7 md:row-start-1 md:row-span-2 md:p-5 md:place-self-start"
+        alt="My story dot com"
+        width={800}
+        height={150}
+      /> */}
 
-      <div className="flex flex-col lg:flex-row gap-9 items-center mb-6 p-3">
+      <div className="space-y-4 md:grid md:grid-cols-8 md:grid-rows-1">
         <Image
           src={home}
           alt="Family reading a book"
-          className=" mb-6 "
+          className="rounded-2xl rid-flow-dense shadow-2xl object-cover md:mt-6 md:col-start-2 md:col-span-5 md:row-start-1 md:row-span-full lg:place-self-start"
           width={700}
         />
-        <div className="title-container  flex flex-col ">
-          <Image src={brand} alt="My story dot com" width={800} />
 
-          <div className="Card-container lg:mt-12 bg-white ml-10 p-6  rounded-lg shadow-lg bg-opacity-70 md:max-w-lg lg:w-auto mr-3 ">
-            <p className="text-lg lg:text-2xl text-neutral-700">
-              MyStory is a platform where you can create explore your creativity
-              to create your own stories in a simple way and share it.
-            </p>
-            <div>
-              <div className="buttons_container flex  flex-col lg:flex-row gap-5 m-5 py-5">
-                <Link href="/login">
-                  <button className="self-end w-full lg:w-48 py-2 px-10 lg:text-2xl text-white rounded-md bg-button hover:bg-hover transition duration-300">
-                    Login
-                  </button>
-                </Link>
+        <div className="Card-container grid space-y-4 md:self-center md:col-start-6 md:col-span-6 md:row-start-1 bg-white p-6 rounded-lg shadow-2xl">
+          <p className="text-lg lg:text-2xl text-neutral-700">
+            MyStory is a platform where you can create explore your creativity
+            to create your own stories in a simple way and share it.
+          </p>
+          <Link href="/login">
+            <button className="place-self-center p-3  w-full text-lg lg:text-2xl text-white rounded-md bg-button hover:bg-hover transition duration-300">
+              Sign in
+            </button>
+          </Link>
 
-                <Link href="/signup">
-                  <button className="self-end w-full lg:w-48  py-2 px-7 lg:text-2xl  text-white rounded-md bg-button hover:bg-hover transition duration-300">
-                    Register
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <Link href="/signup">
+            <button className="p-3 w-full text-lg lg:text-2xl text-white rounded-md bg-button hover:bg-hover transition duration-300">
+              Sign up
+            </button>
+          </Link>
         </div>
       </div>
     </div>

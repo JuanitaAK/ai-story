@@ -60,7 +60,7 @@ export const getStories = async () => {
 
 export const patchTitle = async (story: Story) => {
   try {
-    const response = await fetch("api/stories", {
+    const response = await fetch("/api/stories", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

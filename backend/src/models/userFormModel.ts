@@ -40,3 +40,36 @@ export const getUserByMail = async (user_mail: string) => {
   const result = await pool.query(query, values);
   return result.rows[0];
 };
+export const getUserByResetToken = async (
+  reset_token: string,
+  isTokenExpired: string
+) => {
+  const pool = await poolPromise;
+  const query = "SELECT * FROM public.users WHERE reset_token = $1";
+  const values = [reset_token];
+  const result = await pool.query(query, values);
+  const data = result.rows[0];
+  if (!data) {
+    return "Token has expired or is invalid";
+  }
+  const userTokenDate = data.reset_token_expiry;
+
+  if (isTokenExpired < userTokenDate) {
+    return "Token has expired or is invalid";
+  }
+
+  return data;
+};
+
+export const postResetPasswordToken = async (
+  encryptedToken: string,
+  user_mail: string
+) => {
+  const reset_token_expiry = new Date(
+    new Date().getTime() + 10 * 60 * 1000
+  ).toISOString();
+  const pool = await poolPromise;
+  const query = `UPDATE public.users SET reset_token = $2, reset_token_expiry = $3 WHERE user_mail = $1`;
+  const values = [user_mail, encryptedToken, reset_token_expiry];
+  return await pool.query(query, values);
+};

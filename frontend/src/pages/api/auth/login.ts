@@ -1,8 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios, { AxiosError } from "axios";
 
+const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL as string;
+const SIGNIN_API_URL = (BACKEND_BASE_URL + process.env.SIGNIN_API) as string;
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const url: string = process.env.SIGNIN_USER as string;
+  const url: string = SIGNIN_API_URL;
   if (req.method === "POST") {
     try {
       const response = await axios.post(url, req.body);

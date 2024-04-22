@@ -1,5 +1,5 @@
 import { NoStoryCard } from "../../organismes/storiesCard/NoStoryCard";
-import { StoryCard } from "../../organismes/storiesCard/StoryCard";
+import { StoryTitleCard } from "../../organismes/storiesCard/StoryTitleCard";
 
 export type Story = {
   id_story: string;
@@ -24,7 +24,7 @@ const StoriesContainer = ({ stories }: { stories: Story[] }) => {
       </h3>
       <div className="stories__container whitespace-pre-line">
         {stories.map((story: Story, index) => (
-          <StoryCard key={index} {...story} />
+          <StoryTitleCard key={index} {...story} />
         ))}
       </div>
     </div>

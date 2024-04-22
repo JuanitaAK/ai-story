@@ -6,6 +6,10 @@ import OneStorieContainer from "../components/organismes/OneStorieContainer";
 
 export default OneStorieContainer;
 
+const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL as string;
+const LATEST_STORY_API_URL = (BACKEND_BASE_URL +
+  process.env.LATEST_STORY_API) as string;
+
 export const getServerSideProps = async (context: NextPageContext) => {
   const cookies = cookie.parse(context.req?.headers.cookie || "");
   const token = cookies["Auth-Token"];
@@ -20,7 +24,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
   }
 
   try {
-    const response = await axios.get(process.env.STORY as string, {
+    const response = await axios.get(LATEST_STORY_API_URL, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 404) {

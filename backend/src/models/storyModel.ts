@@ -35,9 +35,16 @@ export const getAllStories = async (user_id: string): Promise<NewStory> => {
 
 export const getStoryByUserId = async (user_id: string): Promise<NewStory> => {
   const pool = await poolPromise;
-  const query = "SELECT * FROM public.stories_created WHERE user_id = $1";
+  const query = "SELECT * FROM public.story_created WHERE user_id = $1";
   const result = await pool.query(query, [user_id]);
   return result.rows;
+};
+
+export const getStoryById = async (id_story: string): Promise<NewStory> => {
+  const pool = await poolPromise;
+  const query = "SELECT * FROM public.story_created WHERE id_story = $1";
+  const result = await pool.query(query, [id_story]);
+  return result.rows[0];
 };
 
 export const newStory = async (user_id: string): Promise<NewStory> => {
@@ -50,6 +57,7 @@ export const newStory = async (user_id: string): Promise<NewStory> => {
 
 export const deleteStory = async (id_story: string) => {
   const pool = await poolPromise;
+  console.log("deleting story with id:", id_story);
   const query = "DELETE FROM public.story_created WHERE id_story = $1";
   const result = await pool.query(query, [id_story]);
   return "Story deleted successfully";

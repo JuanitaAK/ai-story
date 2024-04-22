@@ -5,6 +5,7 @@ import {
   newStory,
   deleteStory,
   updateStory,
+  getStoryById,
 } from "../models/storyModel";
 
 export const getStories = async (req: Request, res: Response) => {
@@ -14,7 +15,7 @@ export const getStories = async (req: Request, res: Response) => {
 };
 
 //GET LATEST STORY ADDED
-export const getStory = async (req: Request, res: Response) => {
+export const getLatestStory = async (req: Request, res: Response) => {
   const user_id = req.body.userId;
   const latestStory = await newStory(user_id);
   if (!latestStory) {
@@ -24,6 +25,17 @@ export const getStory = async (req: Request, res: Response) => {
   }
 };
 
+export const getStory = async (req: Request, res: Response) => {
+  const storyId = req.params.id;
+  console.log(`Attempting to get story with ID: ${storyId}`);
+
+  const story = await getStoryById(storyId);
+  if (!story) {
+    res.status(404).json("Story not found");
+  } else {
+    res.status(200).json(story);
+  }
+};
 //DELETE STORY
 export const deletingStory = async (req: Request, res: Response) => {
   const storyId = req.params.id;

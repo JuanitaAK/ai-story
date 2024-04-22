@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL as string;
+const SIGNOUT_API_URL = (BACKEND_BASE_URL + process.env.SIGNOUT_API) as string;
+
 export async function POST(req: NextRequest) {
-  const responseApi = await fetch("http://localhost:3003/sign-out");
+  const responseApi = await fetch(SIGNOUT_API_URL);
   const resApiJson = responseApi.json();
 
   const response = NextResponse.json(resApiJson);
