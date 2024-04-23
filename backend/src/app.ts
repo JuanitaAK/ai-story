@@ -26,7 +26,7 @@ app.use(cors(corsOptions), globalLimiter);
 
 app.use("/auth", userRouter); //, userLimiter
 
-app.use("/stories", auth, storyLimiter, storyRouter);
+app.use("/stories", auth, storyRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).send("This is the backend server for the app.");

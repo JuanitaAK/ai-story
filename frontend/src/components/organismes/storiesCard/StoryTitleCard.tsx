@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { Story } from "../../pages/Stories/StoriesContainer";
 import { useRouter } from "next/router";
-import axios from "axios";
 import { deleteStory } from "@/services/storiesApi";
 
 export const StoryTitleCard = (props: Story): JSX.Element => {
