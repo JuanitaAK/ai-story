@@ -3,11 +3,7 @@ import helmet from "helmet";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import { corsOptions } from "./middlewares/cors";
-import {
-  storyLimiter,
-  userLimiter,
-  globalLimiter,
-} from "./middlewares/limiter";
+import { globalLimiter } from "./middlewares/limiter";
 
 import userRouter from "./routes/userRouter";
 import storyRouter from "./routes/storyRouter";
@@ -18,11 +14,10 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(helmet());
-// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors(corsOptions), globalLimiter);
+app.use(helmet(), cors(corsOptions), globalLimiter);
 
 app.use("/auth", userRouter); //, userLimiter
 
