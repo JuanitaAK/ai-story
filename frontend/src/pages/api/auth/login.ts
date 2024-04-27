@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL as string;
 const SIGNIN_API_URL = (BACKEND_BASE_URL + process.env.SIGNIN_API) as string;
