@@ -26,21 +26,20 @@ const ProfilePage = ({
   };
 
   return (
-    <div className="story flex justify-center items-center h-screen ">
-      <div className=" rounded-lg md:max-w-3xl shadow-xl m-12 mb-8 p-7">
+    <div className="flex justify-center items-center min-h-screen ">
+      <div className="w-full max-w-4xl rounded-lg shadow-xl p-8 my-4 mx-4 md:mx-auto">
         <Image
           src={avatar}
           alt="User Avatar"
-          className="w-24 h-24 mx-auto rounded-full mb-4"
+          className="w-24 h-24 mx-auto m-6 mb-4"
         />
-        <div className="flex flex-col items-center pb-3 px-12 text-2xl ">
-          <p>{profile.name} </p>
+        <div className="flex flex-col w-auto items-center pb-3 mx-auto text-2xl ">
+          <p>{profile.name}</p>
           <p>{profile.mail}</p>
         </div>
-
         <button
           onClick={handleLogout}
-          className="w-full py-2 px-6 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
+          className="flex justify-center items-center w-full md:w-1/2 mt-4 mx-auto py-3 px-6 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
         >
           Logout
         </button>
