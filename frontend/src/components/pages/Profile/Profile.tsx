@@ -6,13 +6,16 @@ import { deleteAuthToken } from "@/services/storiesApi";
 import router from "next/router";
 
 export type ProfilePageProps = {
-  firstName: string;
-  lastName: string;
-  email: string;
+  userId: string;
+  name: string;
+  mail: string;
 };
 
-const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
-  const { firstName, lastName, email } = userData;
+const ProfilePage = ({
+  profile,
+}: {
+  profile: ProfilePageProps;
+}): JSX.Element => {
   const handleLogout = async () => {
     try {
       deleteAuthToken();
@@ -22,8 +25,6 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
     }
   };
 
-  const name = firstName + " " + lastName;
-
   return (
     <div className="story flex justify-center items-center h-screen ">
       <div className=" rounded-lg md:max-w-3xl shadow-xl m-12 mb-8 p-7">
@@ -32,14 +33,14 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
           alt="User Avatar"
           className="w-24 h-24 mx-auto rounded-full mb-4"
         />
-        <div className="flex flex-col items-center pb-3 text-2xl ">
-          <p>{name} </p>
-          <p>{email}</p>
+        <div className="flex flex-col items-center pb-3 px-12 text-2xl ">
+          <p>{profile.name} </p>
+          <p>{profile.mail}</p>
         </div>
 
         <button
           onClick={handleLogout}
-          className="w-full py-2 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
+          className="w-full py-2 px-6 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
         >
           Logout
         </button>
@@ -48,4 +49,4 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
