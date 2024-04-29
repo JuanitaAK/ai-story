@@ -61,6 +61,19 @@ export const getUserByResetToken = async (
   return data;
 };
 
+export const updateUsersPassword = async (
+  user_password: string,
+  user_id: string
+) => {
+  const reset_token = "";
+  const reset_token_expiry = new Date(0).toISOString();
+  const pool = await poolPromise;
+  const query =
+    "UPDATE public.users SET user_password = $1, reset_token = $2, reset_token_expiry = $3 WHERE user_id = $4";
+  const values = [user_password, reset_token, reset_token_expiry, user_id];
+  return await pool.query(query, values);
+};
+
 export const postResetPasswordToken = async (
   encryptedToken: string,
   user_mail: string
@@ -69,7 +82,19 @@ export const postResetPasswordToken = async (
     new Date().getTime() + 10 * 60 * 1000
   ).toISOString();
   const pool = await poolPromise;
-  const query = `UPDATE public.users SET reset_token = $2, reset_token_expiry = $3 WHERE user_mail = $1`;
+  const query =
+    "UPDATE public.users SET reset_token = $2, reset_token_expiry = $3 WHERE user_mail = $1";
   const values = [user_mail, encryptedToken, reset_token_expiry];
+  return await pool.query(query, values);
+};
+
+export const cancelResetPasswordTokens = async (
+  reset_token: string,
+  user_mail: string
+) => {
+  const pool = await poolPromise;
+  const query =
+    "UPDATE public.users SET reset_token = $2, reset_token_expiry = $3 WHERE user_mail = $1";
+  const values = [user_mail, reset_token, null];
   return await pool.query(query, values);
 };

@@ -12,12 +12,13 @@ import {
   getUserByMail,
   postResetPasswordToken,
   getUserByResetToken,
+  cancelResetPasswordTokens,
+  updateUsersPassword,
 } from "../models/userFormModel";
 import { sendEmail } from "../services/email";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 const AUTH_TOKEN_EXPIRY_IN_SECONDS = 86400;
-const RESET_TOKEN_EXPIRY_IN_SECONDS = 600;
 
 export const signup = async (req: Request, res: Response) => {
   const { user_name, user_lastname, user_mail, password } = req.body;
@@ -59,9 +60,13 @@ export const login = async (req: Request, res: Response) => {
       if (!isValid) {
         return res.status(401).json({ message: "Invalid credentials" });
       }
-      const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, {
-        expiresIn: AUTH_TOKEN_EXPIRY_IN_SECONDS,
-      });
+      const token = jwt.sign(
+        { userId: user.user_id, name: user.user_name, mail: user_mail },
+        JWT_SECRET,
+        {
+          expiresIn: AUTH_TOKEN_EXPIRY_IN_SECONDS,
+        }
+      );
       const result = { userId: user.user_id, token: token };
       res.header(
         "set-cookie",
@@ -116,7 +121,8 @@ export const forgotPassword = async (req: Request, res: Response) => {
       "host"
     )}/auth/reset-password/${token}`;
 
-    const html = `<p>Click <a href="${resetUrl}">here</a> to reset your password.</p> \n \n <p>This link will expire in 10 minutes.</p>`;
+    const html = `<h2>Reset your password</h2> \n \n
+    <p>Click <a href="${resetUrl}">here</a> to reset your password.</p> \n \n <p>This link will expire in 10 minutes.</p>`;
 
     try {
       await sendEmail(user_mail, html);
@@ -124,10 +130,15 @@ export const forgotPassword = async (req: Request, res: Response) => {
         .status(200)
         .json({ status: "succes", message: "Reset token sent successfully" });
     } catch (error) {
-      console.error(error, "Error sending email for password reset");
-      return res
-        .status(500)
-        .json({ error: "Internal Server Error when reseting password" });
+      await cancelResetPasswordTokens("", user_mail);
+      console.error(
+        error,
+        "Error sending email for password reset. Please try again later"
+      );
+      return res.status(500).json({
+        error:
+          "Internal Server Error when reseting password. Please try again later",
+      });
     }
   } catch (error) {
     console.error(error);
@@ -136,28 +147,35 @@ export const forgotPassword = async (req: Request, res: Response) => {
 };
 
 export const resetPassword = async (req: Request, res: Response) => {
+  const { user_password, user_confirmed_password } = req.body;
   const { token } = req.params;
-  const encryptedToken = crypto
-    .createHash("sha256")
-    .update(token)
-    .digest("hex");
-
+  const encryptedToken = encryptResetPasswordToken(token);
+  const hashedPassword = await bcrypt.hash(user_password, 10);
   const isTokenExpired = new Date(
     new Date().getTime() + 10 * 60 * 1000
   ).toISOString();
 
+  if (user_password !== user_confirmed_password) {
+    return res.status(400).json({ message: "Passwords do not match" });
+  }
+
   try {
     const user = await getUserByResetToken(encryptedToken, isTokenExpired);
-
     if (!user) {
       return res
         .status(404)
         .json({ message: "Token has expired or is invalid" });
     }
+    const user_id = user.user_id;
+    const newPassword = await updateUsersPassword(hashedPassword, user_id);
 
-    const token = jwt.sign({ userId: user.user_id }, JWT_SECRET, {
-      expiresIn: AUTH_TOKEN_EXPIRY_IN_SECONDS,
-    });
+    const token = jwt.sign(
+      { userId: user.user_id, name: user.user_name, mail: user.user_mail },
+      JWT_SECRET,
+      {
+        expiresIn: AUTH_TOKEN_EXPIRY_IN_SECONDS,
+      }
+    );
 
     res.header(
       "set-cookie",
@@ -165,7 +183,9 @@ export const resetPassword = async (req: Request, res: Response) => {
         new Date().getTime() + AUTH_TOKEN_EXPIRY_IN_SECONDS * 1000
       } `
     );
-    return res.status(200).json({ userId: user.user_id });
+    return res
+      .status(200)
+      .json({ userId: user.user_id, message: "Password updated successfully" });
   } catch (error) {
     console.error(error, "Problem while reseting password");
     res.status(500).json({ error: "Internal Server Error" });
