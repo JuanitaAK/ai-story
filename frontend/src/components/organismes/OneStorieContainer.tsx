@@ -34,18 +34,18 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
 
   if (!story) {
     return (
-      <div className="story">
+      <div className="story flex justify-center items-center h-screen ">
         <NoStoryCard />
       </div>
     );
   }
 
   return (
-    <div className="story">
-      <h3 className="mb-2 text-3xl font-medium leading-tight text-nav-font m-5">
+    <div className="story ">
+      <h2 className="text-3xl font-bold items-start mt-6 leading-tight text-nav-font">
         Story Created
-      </h3>
-      <div className="story__container whitespace-pre-line">
+      </h2>
+      <div className="story__container flex flex-col justify-center items-center">
         <StoryCard {...story} />
       </div>
 

@@ -129,7 +129,7 @@ export const LoginForm = (): JSX.Element => {
       </form>
 
       <p className=" text-neutral-600 mt-4">
-        Don not have an account? &nbsp;
+        Do not have an account? &nbsp;
         <Link href="/signup" className="text-blue hover:underline">
           Sign Up
         </Link>

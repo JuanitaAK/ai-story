@@ -1,7 +1,4 @@
-import Link from "next/link";
 import { AddTitle } from "./AddTitle";
-import { StoryCard } from "./storiesCard/StoryCard";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Story } from "../pages/Stories/StoriesContainer";
 import { deleteStory } from "../../services/storiesApi";
@@ -19,13 +16,15 @@ const StoryContainer = ({ story }: { story: Story }): JSX.Element => {
   }
 
   return (
-    <div className="story">
-      <h3 className="mb-2 text-3xl font-medium leading-tight text-nav-font m-5">
+    <div className="story block rounded-lg bg-story shadow-xl m-5 mb-8 p-5">
+      <h3 className="mb-6 text-3xl font-bold leading-tight text-nav-font">
         {story.title}
       </h3>
-      <div className="story__container whitespace-pre-line">{story.story}</div>
+      <p className="story__container whitespace-pre-line  text-blue-800">
+        {story.story}
+      </p>
 
-      <div className="buttons_container flex gap-5 mx-5 mb-8">
+      <div className="buttons_container flex gap-5 mx-5 my-6">
         <button
           type="submit"
           className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"

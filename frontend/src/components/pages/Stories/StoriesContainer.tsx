@@ -12,17 +12,18 @@ export type Story = {
 const StoriesContainer = ({ stories }: { stories: Story[] }) => {
   if (!stories || stories.length === 0) {
     return (
-      <div className="stories">
+      <div className="stories flex flex-col justify-center items-center">
         <NoStoryCard />
       </div>
     );
   }
   return (
     <div className="stories">
-      <h3 className="mb-2 text-3xl font-bold leading-tight text-nav-font m-5">
+      <h2 className="text-4xl max-w-max ml-12 font-bold mt-12 mb-3 text-left leading-tight text-nav-font">
         Your Stories
-      </h3>
-      <div className="stories__container whitespace-pre-line">
+      </h2>
+
+      <div className="flex-auto stories__container flex flex-col justify-center items-center whitespace-pre-line">
         {stories.map((story: Story, index) => (
           <StoryTitleCard key={index} {...story} />
         ))}

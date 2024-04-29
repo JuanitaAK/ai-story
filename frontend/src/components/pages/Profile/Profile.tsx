@@ -25,8 +25,8 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
   const name = firstName + " " + lastName;
 
   return (
-    <div className="flex flex-col  mt-20 justify-center my-6 p-6 rounded-lg bg-white shadow-lg ">
-      <div className="mb-6 text-center">
+    <div className="story flex justify-center items-center h-screen ">
+      <div className=" rounded-lg md:max-w-3xl shadow-xl m-12 mb-8 p-7">
         <Image
           src={avatar}
           alt="User Avatar"
@@ -36,14 +36,14 @@ const Profile: React.FC<ProfilePageProps> = (data): JSX.Element => {
           <p>{name} </p>
           <p>{email}</p>
         </div>
-      </div>
 
-      <button
-        onClick={handleLogout}
-        className="w-full py-2 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
-      >
-        Logout
-      </button>
+        <button
+          onClick={handleLogout}
+          className="w-full py-2 text-white rounded-md text-lg bg-button hover:bg-hover transition duration-300"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
