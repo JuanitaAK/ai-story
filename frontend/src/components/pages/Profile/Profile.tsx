@@ -5,6 +5,7 @@ import { userData } from "../../../data/userData";
 import { deleteAuthToken } from "@/services/storiesApi";
 import router from "next/router";
 
+
 export type ProfilePageProps = {
   userId: string;
   name: string;

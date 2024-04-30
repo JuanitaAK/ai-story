@@ -3,18 +3,18 @@ import "@testing-library/jest-dom";
 import { ProfilePageProps } from "../Profile";
 import Profile from "../Profile";
 
+const userData = {
+  userId: "111111111111",
+  name: "Doe",
+  mail: "toto@gmail.com",
+};
 describe("Profile", () => {
+  const props: ProfilePageProps = {
+    ...userData,
+  };
   it("should render the user's name and email", () => {
-    const userData = {
-      firstName: "John",
-      lastName: "Doe",
-      email: "toto@gmail.com",
-    };
-    const props: ProfilePageProps = {
-      ...userData,
-    };
-    render(<Profile {...props} />);
-    const name = screen.getByText("John Doe");
+    render(<Profile profile={props} />);
+    const name = screen.getByText("Doe");
 
     expect(name).toBeVisible();
   });
@@ -25,11 +25,9 @@ describe("Profile", () => {
       lastName: "Doe",
       email: "john.doe@example.com",
     };
-    const props: ProfilePageProps = {
-      ...userData,
-    };
-    render(<Profile {...props} />);
-    const email = screen.getByText("john.doe@example.com");
+
+    render(<Profile profile={props} />);
+    const email = screen.getByText("toto@gmail.com");
 
     expect(email).toBeVisible();
   });
