@@ -2,7 +2,6 @@ import { screen, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { useRouter } from "next/router";
 import { StoryTitleCard } from "../StoryTitleCard";
-import { deleteStory } from "@/services/storiesApi";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
