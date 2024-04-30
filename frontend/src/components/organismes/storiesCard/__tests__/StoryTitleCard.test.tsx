@@ -8,10 +8,6 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
-jest.mock("../../../api/story", () => ({
-  deleteStory: jest.fn(),
-}));
-
 describe("StoryTitleCard", () => {
   const mockRouter = {
     push: jest.fn(),
