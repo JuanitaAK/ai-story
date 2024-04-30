@@ -1,7 +1,6 @@
 import { AddTitle } from "./AddTitle";
 import { useState } from "react";
 import { Story } from "../pages/Stories/StoriesContainer";
-import { deleteStory } from "../../services/storiesApi";
 import { NoStoryCard } from "./storiesCard/NoStoryCard";
 
 const StoryContainer = ({ story }: { story: Story }): JSX.Element => {
