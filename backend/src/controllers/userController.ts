@@ -119,7 +119,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
     const resetUrl = `${req.protocol}://${req.get(
       "host"
-    )}/auth/reset-password/${token}`;
+    )}/reset-password?otp=${token}`;
 
     const html = `<h2>Reset your password</h2> \n \n
     <p>Click <a href="${resetUrl}">here</a> to reset your password.</p> \n \n <p>This link will expire in 10 minutes.</p>`;
@@ -147,8 +147,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
 };
 
 export const resetPassword = async (req: Request, res: Response) => {
-  const { user_password, user_confirmed_password } = req.body;
-  const { token } = req.params;
+  const { token, user_password, user_confirmed_password } = req.body;
   const encryptedToken = encryptResetPasswordToken(token);
   const hashedPassword = await bcrypt.hash(user_password, 10);
   const isTokenExpired = new Date(

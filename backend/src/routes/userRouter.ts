@@ -8,6 +8,6 @@ router.post("/login", userLimiter, userController.login);
 router.post("/signup", userController.signup);
 router.post("/logout", userController.logout);
 router.post("/forgot", userController.forgotPassword);
-router.patch("/reset-password/:token", userController.resetPassword);
+router.post("/reset-password", userController.resetPassword);
 
 export default router;
