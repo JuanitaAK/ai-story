@@ -56,7 +56,6 @@ export const LoginForm = (): JSX.Element => {
       });
       const resJson = await response.json();
       setIsLoading(false);
-      console.log(resJson);
       if (response.status === 200) {
         router.push(`/stories`);
       } else {

@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(helmet(), cors(corsOptions), globalLimiter);
 
-app.use("/auth", userRouter); //, userLimiter
+app.use("/auth", userRouter);
 
 app.use("/stories", auth, storyRouter);
 

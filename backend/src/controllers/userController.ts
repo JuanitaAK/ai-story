@@ -150,7 +150,7 @@ export const resetPassword = async (req: Request, res: Response) => {
   const { token, user_password, user_confirmed_password } = req.body;
   const encryptedToken = encryptResetPasswordToken(token);
   const hashedPassword = await bcrypt.hash(user_password, 10);
-  const isTokenExpired = new Date(
+  const tokenExpiration = new Date(
     new Date().getTime() + 10 * 60 * 1000
   ).toISOString();
 
@@ -159,10 +159,18 @@ export const resetPassword = async (req: Request, res: Response) => {
   }
 
   try {
-    const user = await getUserByResetToken(encryptedToken, isTokenExpired);
+    const user = await getUserByResetToken(encryptedToken);
+
     if (!user) {
       return res
         .status(404)
+        .json({ message: "Token has expired or is invalid" });
+    }
+
+    const userTokenDate = user.reset_token_expiry;
+    if (tokenExpiration < userTokenDate) {
+      return res
+        .status(400)
         .json({ message: "Token has expired or is invalid" });
     }
     const user_id = user.user_id;
@@ -187,6 +195,6 @@ export const resetPassword = async (req: Request, res: Response) => {
       .json({ userId: user.user_id, message: "Password updated successfully" });
   } catch (error) {
     console.error(error, "Problem while reseting password");
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error backend" });
   }
 };
