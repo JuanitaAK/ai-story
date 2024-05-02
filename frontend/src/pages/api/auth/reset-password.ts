@@ -8,7 +8,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const response = await axios.post(RESET_PASSWORD_API, req.body);
-
+      response.headers["set-cookie"] &&
+        res.setHeader("Set-Cookie", response.headers["set-cookie"]);
       res.status(200).json(response.data);
     } catch (error) {
       if (axios.isAxiosError(error)) {

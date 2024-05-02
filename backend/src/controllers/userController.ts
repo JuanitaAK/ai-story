@@ -112,10 +112,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     }
     const token = crypto.randomBytes(20).toString("hex");
     const encryptedToken = encryptResetPasswordToken(token);
-    const registerResetPasswordToken = await postResetPasswordToken(
-      encryptedToken,
-      user_mail
-    );
+    await postResetPasswordToken(encryptedToken, user_mail);
 
     const resetUrl = `${req.protocol}://${req.get(
       "host"
@@ -126,9 +123,10 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
     try {
       await sendEmail(user_mail, html);
-      return res
-        .status(200)
-        .json({ status: "succes", message: "Reset token sent successfully" });
+      return res.status(200).json({
+        status: "succes",
+        message: "A mail with a link to reset your password has been sent",
+      });
     } catch (error) {
       await cancelResetPasswordTokens("", user_mail);
       console.error(
@@ -163,18 +161,18 @@ export const resetPassword = async (req: Request, res: Response) => {
 
     if (!user) {
       return res
-        .status(404)
-        .json({ message: "Token has expired or is invalid" });
+        .status(400)
+        .json({ message: "Token has expired or is invalid." });
     }
 
     const userTokenDate = user.reset_token_expiry;
     if (tokenExpiration < userTokenDate) {
       return res
         .status(400)
-        .json({ message: "Token has expired or is invalid" });
+        .json({ message: "Token has expired or is invalid." });
     }
     const user_id = user.user_id;
-    const newPassword = await updateUsersPassword(hashedPassword, user_id);
+    await updateUsersPassword(hashedPassword, user_id);
 
     const token = jwt.sign(
       { userId: user.user_id, name: user.user_name, mail: user.user_mail },

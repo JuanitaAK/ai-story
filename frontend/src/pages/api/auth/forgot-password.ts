@@ -10,10 +10,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const response = await axios.post(FORGOT_PASSWORD_API, req.body);
       res.status(200).json(response.data);
     } catch (error) {
-      if (error instanceof AxiosError) {
-        res
-          .status(error.status || 500)
-          .json({ error: "Internal Server Error" });
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status || 500;
+        const message = error.response?.data || "Internal Server Error";
+        res.status(status).json({ error: message });
       }
       res.status(500).json({ error: "Internal Server Error" });
     }

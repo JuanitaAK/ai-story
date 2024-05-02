@@ -77,10 +77,10 @@ export const LoginForm = (): JSX.Element => {
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
       {isLoading && (
         <div className="absolute inset-0 bg-white  flex justify-center items-center z-50">
-          {/* bg-opacity-50 */}
           <Loader />
         </div>
       )}
+
       <h2 className="text-3xl font-bold text-nav-font mb-6  ">Sign In</h2>
 
       <form

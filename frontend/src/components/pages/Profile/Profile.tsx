@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import avatar from "../../../../public/fox_6249911.png";
 import Image from "next/image";
-import { userData } from "../../../data/userData";
-import { deleteAuthToken } from "@/services/storiesApi";
 import router from "next/router";
-
+import Cookies from "js-cookie";
 
 export type ProfilePageProps = {
   userId: string;
@@ -17,12 +15,15 @@ const ProfilePage = ({
 }: {
   profile: ProfilePageProps;
 }): JSX.Element => {
-  const handleLogout = async () => {
+  const [isLogged, setIsLogged] = useState(false);
+
+  const handleLogout = () => {
     try {
-      deleteAuthToken();
-      await router.push(`/`);
+      Cookies.remove("Auth-Token");
+      setIsLogged(false);
+      router.replace(`/`);
     } catch (error) {
-      console.error("Failed to delete your story:", error);
+      console.error("Failed to logout:", error);
     }
   };
 

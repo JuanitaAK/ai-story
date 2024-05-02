@@ -58,14 +58,15 @@ export const ResetPassword = (): JSX.Element => {
         body: JSON.stringify(dataAndToken),
       });
       const resJson = await response.json();
-      setResult(resJson.error.message);
+
       setIsLoading(false);
       if (response.status === 200) {
+        setResult(resJson.message);
         router.push("/stories");
       } else {
         setError("user_password", {
           type: "manual",
-          message: resJson.message,
+          message: resJson.error.message,
         });
       }
     } catch (error) {
@@ -74,15 +75,18 @@ export const ResetPassword = (): JSX.Element => {
   };
 
   return (
-    <div className="flex content-center justify-center w-ful">
+    <div className="flex content-center justify-center w-full">
       <div className="w-full max-w-3xl rounded-lg shadow-xl p-8 my-4 mx-4 md:mx-auto">
-        <h2 className="text-2xl font-semibold text-center text-nav-font">
+        <h2 className="text-3xl font-semibold text-center text-nav-font">
           Reset your password
         </h2>
         <p className="text-center text-gray-600 mt-2">
           Enter your new password below.
         </p>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col space-y-4 items-left mt-6"
+        >
           <div className="flex my-3 flex-col space-y-3">
             <label
               htmlFor="password"
@@ -127,7 +131,7 @@ export const ResetPassword = (): JSX.Element => {
 
           <button
             type="submit"
-            className="bg-button text-white p-2 mt-3 font-semibold rounded-md hover:bg-hover transition duration-300"
+            className="bg-button text-white p-2 mt-3 font-semibold md:max-w-sm rounded-md hover:bg-hover transition duration-300"
             disabled={isSubmitting}
           >
             Reset Password
