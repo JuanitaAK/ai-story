@@ -19,7 +19,7 @@ const LandingPage = (): JSX.Element => {
         />
         <div className="Card-container grid space-y-4 md:self-center md:col-start-6 md:col-span-6 md:row-start-1 bg-white p-6 rounded-lg shadow-2xl">
           <p className="md:text-2xl text-nav-hover text-left ">
-           The ultimate platform for bringing your stories to life. Whether you're a budding writer or an experienced storyteller, AIStory provides an intuitive and simple interface to craft and explore storytelling. Let your imagination soar. Start your storytelling journey with us today!
+           The ultimate platform for bringing your stories to life. Whether you are a budding writer or an experienced storyteller, AIStory provides an intuitive and simple interface to craft and explore storytelling. Let your imagination soar. Start your storytelling journey with us today!
           </p>
           <Link href="/login">
             <button className="place-self-center p-3  w-full text-lg lg:text-2xl text-white rounded-md bg-button hover:bg-hover transition duration-300">
