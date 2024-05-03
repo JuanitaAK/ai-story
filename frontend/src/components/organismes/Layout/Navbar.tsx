@@ -47,9 +47,8 @@ const Navbar = (): JSX.Element => {
       console.error("Failed to logout:", error);
     }
   };
-
   return (
-    <nav className="menu-btn Z-10 w-full sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg hover:text-hove text-2xl">
+    <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg text-2xl">
       <div className="container mx-auto flex justify-between items-center transition duration-300">
         <Link href="/" className="md=ml-3">
           <Image src={logo} alt="Logo Story.com" width={80} height={80} />
@@ -61,7 +60,7 @@ const Navbar = (): JSX.Element => {
             <div className="hidden md:flex space-x-4">
               <Link
                 href="/stories"
-                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md p-3  "
+                className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3  "
                 onClick={() => setIsDropdownOpen(false)}
               >
                 Stories
@@ -69,7 +68,7 @@ const Navbar = (): JSX.Element => {
 
               <Link
                 href="/form"
-                className="hover:bg-hover cursor-pointer hover:text-white transition duration-300 rounded-md p-3 "
+                className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3  "
                 onClick={() => setIsDropdownOpen(false)}
               >
                 New Story
@@ -78,8 +77,8 @@ const Navbar = (): JSX.Element => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="block p-3 rounded-md hover:text-white transition duration-300 hover:bg-hover"
-                >
+                  className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3  "
+                  >
                   Account
                 </button>
                 {isDropdownOpen && (
@@ -87,7 +86,7 @@ const Navbar = (): JSX.Element => {
                     {/* desktooopp */}
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 rounded-md hover:text-white  hover:hover:bg-sky-800 transition duration-300"
+                      className="block px-4 py-2 rounded-md hover:text-white  hover:bg-nav-hover transition duration-300"
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       Profile
@@ -95,7 +94,7 @@ const Navbar = (): JSX.Element => {
                     <Link
                       href="/"
                       onClick={handleLogout}
-                      className="block px-4 py-2 rounded-md hover:text-white hover:hover:bg-sky-800 transition duration-300"
+                      className="block px-4 py-2 rounded-md hover:text-white  hover:bg-nav-hover transition duration-300"
                     >
                       Logout
                     </Link>
@@ -119,17 +118,17 @@ const Navbar = (): JSX.Element => {
 
         {isMenuOpen && isLogged && (
           // <div className="fixed bg-black flex p-32 justify-center items-center">
-          <div className=" fixed md:hidden block right-4 mt-40 w-48 bg-sky-800 shadow-xl rounded-lg">
+          <div className=" fixed md:hidden block right-4 mt-40 w-48 bg-white shadow-xl rounded-lg">
             <Link
               href="/stories"
-              className="block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300"
+              className="block hover:bg-hover hover:text-nav-hover rounded-md p-3 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Stories
             </Link>
             <Link
               href="/form"
-              className=" block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300 "
+              className=" block hover:bg-hover hover:text-nav-hover rounded-md p-3 transition duration-300 "
               onClick={() => setIsMenuOpen(false)}
             >
               New Story
@@ -146,7 +145,7 @@ const Navbar = (): JSX.Element => {
               <div className=" fixed mt-5justify-center block right-15 rounded-xl bg-sky-400 text-white w-48 shadow-lg transition duration-300">
                 <Link
                   href="/profile"
-                  className="block px-4 py-2 hover:hover:bg-sky-800  hover:text-white rounded-md transition duration-300"
+                  className="block px-4 py-2 hover:bg-hover hover:text-nav-hover rounded-md transition duration-300"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Profile
@@ -154,7 +153,7 @@ const Navbar = (): JSX.Element => {
                 <Link
                   href="/"
                   onClick={handleLogout}
-                  className="block  hover:hover:bg-sky-800  hover:text-white rounded-md px-3 py-3 transition duration-300"
+                  className="block  hover:bg-hover hover:text-nav-hover rounded-md px-3 py-3 transition duration-300"
                 >
                   Logout
                 </Link>

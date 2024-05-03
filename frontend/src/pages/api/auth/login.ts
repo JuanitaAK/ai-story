@@ -13,12 +13,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         res.setHeader("Set-Cookie", response.headers["set-cookie"]);
       res.status(200).json(response.data);
     } catch (error) {
-      // if (error instanceof AxiosError) {
-      //   res
-      //     .status(error.status || 500)
-      //     .json({ error: "Internal Server Error" });
-      // }
-
       if (axios.isAxiosError(error)) {
         const status = error.response?.status || 500;
         if (status === 401) {

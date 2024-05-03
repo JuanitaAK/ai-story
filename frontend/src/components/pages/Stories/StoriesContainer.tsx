@@ -19,11 +19,11 @@ const StoriesContainer = ({ stories }: { stories: Story[] }) => {
   }
   return (
     <div className="stories">
-      <h2 className="text-4xl max-w-max ml-12 font-bold mt-12 mb-3 text-left leading-tight text-nav-font">
+      <h2 className="text-4xl ml-12 font-bold mt-12 mb-3 text-left leading-tight text-nav-font">
         Your Stories
       </h2>
 
-      <div className="flex-auto stories__container flex flex-col justify-center items-center whitespace-pre-line">
+      <div className="flex-auto stories__container m-3  max-w-fit flex flex-col justify-center items-center whitespace-pre-line">
         {stories.map((story: Story, index) => (
           <StoryTitleCard key={index} {...story} />
         ))}

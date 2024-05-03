@@ -82,7 +82,7 @@ const StoryForm = (): JSX.Element => {
       <div className="hidden lg:block">
         <Effect />
       </div>
-      <div className=" max-w-md mx-auto  text-font p-6 m-3 rounded-lg bg-white shadow-lg">
+      <div className=" max-w-md mx-auto text-font p-6 m-3 rounded-lg bg-white shadow-lg">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col space-y-4"

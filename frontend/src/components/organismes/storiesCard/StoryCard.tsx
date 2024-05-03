@@ -10,13 +10,13 @@ export const StoryCard = (props: Story): JSX.Element => {
   return (
     <div
       key={props.id_story}
-      className="block rounded-lg bg-story shadow-xl m-5 mb-8 p-5 whitespace-pre-line "
+      className="flex rounded-lg mx-auto bg-white shadow-xl m-5 mb-8 p-5 whitespace-pre-line "
     >
       <h5 className="my-6 pb-3 text-2xl text-center font-extrabold leading-tight text-title">
         {props.title?.toUpperCase()}
       </h5>
       <p
-        className={`mb-4 pb-6 text-base text-blue-800 ${
+        className={`mb-4 pb-6 text-font ${
           !isExpanded ? "line-clamp-4" : ""
         }`}
       >
@@ -28,7 +28,7 @@ export const StoryCard = (props: Story): JSX.Element => {
           onClick={toggleText}
           className="self-end w-48 py-2 text-white rounded-md  bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
         >
-          {isExpanded ? "Show Less" : "Show More"}
+      {isExpanded ? "Show Less" : "Show More"}
         </button>
       </div>
     </div>
