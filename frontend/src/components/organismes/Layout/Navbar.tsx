@@ -51,7 +51,7 @@ const Navbar = (): JSX.Element => {
     <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg text-2xl">
       <div className="container mx-auto flex justify-between items-center transition duration-300">
         <Link href="/" className="md=ml-3">
-          <Image src={logo} alt="Logo Story.com" width={80} height={80} />
+          <Image src={logo} alt="Logo Story.com" width={70} height={70} />
         </Link>
 
         {isLogged && (
