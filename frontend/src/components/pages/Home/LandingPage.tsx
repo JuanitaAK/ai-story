@@ -1,6 +1,5 @@
 import Image from "next/image";
 import home from "./../../../../public/home.png";
-import Link from "next/link";
 
 const LandingPage = (): JSX.Element => {
   return (
@@ -8,7 +7,7 @@ const LandingPage = (): JSX.Element => {
       <h1 className="font-mono text-center text-3xl md:text-7xl font-bold text-nav-font pt-3 mb-3">
        AI Story
       </h1>
-      <p className="md:text-2xl text-center text-nav-hover">Unleash your creativity with My AI Story.</p>
+      <p className="md:text-2xl text-center text-nav-hover">Unleash your creativity with AI Story</p>
       <div className="space-y-4 md:grid md:grid-cols-8 md:grid-rows-1">
         <Image
           src={home}
