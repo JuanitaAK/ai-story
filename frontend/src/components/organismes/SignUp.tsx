@@ -103,7 +103,7 @@ export const SignUpForm = (): JSX.Element => {
                 First Name
               </label>
               <input
-                className="w-full p-2 border rounded focus:ring focus:ring-story"
+                className="w-full p-2 border rounded focus:ring focus:ring-hover"
                 type="text"
                 id="user_name"
                 placeholder="John"
@@ -122,7 +122,7 @@ export const SignUpForm = (): JSX.Element => {
                 Last Name
               </label>
               <input
-                className="w-full p-2 border rounded focus:ring focus:ring-story"
+                className="w-full p-2 border rounded focus:ring focus:ring-hover"
                 type="text"
                 id="user_lastname"
                 placeholder="Doe"
@@ -143,7 +143,7 @@ export const SignUpForm = (): JSX.Element => {
             Email
           </label>
           <input
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
             type="email"
             id="email"
             placeholder="toto@story.com"
@@ -159,7 +159,7 @@ export const SignUpForm = (): JSX.Element => {
             Confirm Email
           </label>
           <input
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
             type="email"
             id="confirmEmail"
             placeholder="toto@story.com"
@@ -176,7 +176,7 @@ export const SignUpForm = (): JSX.Element => {
             Password
           </label>
           <input
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
             type="password"
             id="password"
             placeholder="********"
@@ -193,7 +193,7 @@ export const SignUpForm = (): JSX.Element => {
             Confirm your password
           </label>
           <input
-            className="w-full p-2  border rounded focus:ring focus:ring-story"
+            className="w-full p-2  border rounded focus:ring focus:ring-hover"
             type="password"
             id="confirm_password"
             placeholder="********"

@@ -99,7 +99,7 @@ export const ResetPassword = (): JSX.Element => {
               id="password"
               placeholder="********"
               {...register("user_password")}
-              className="w-full rounded-lg  p-2 border focus:ring focus:ring-story"
+              className="w-full rounded-lg  p-2 border focus:ring focus:ring-hover"
             />
             {errors.user_password && (
               <span className="text-red-500 text-m">
@@ -119,7 +119,7 @@ export const ResetPassword = (): JSX.Element => {
               id="user_confirmed_password"
               {...register("user_confirmed_password")}
               placeholder="********"
-              className="w-full rounded-lg  p-2 border focus:ring focus:ring-story"
+              className="w-full rounded-lg  p-2 border focus:ring focus:ring-hover"
             />
             {errors.user_confirmed_password && (
               <span className="text-red-500 text-m">

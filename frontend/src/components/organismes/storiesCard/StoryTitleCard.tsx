@@ -18,7 +18,7 @@ export const StoryTitleCard = (props: Story): JSX.Element => {
   return (
     <div
       key={props.id_story}
-      className="content-center max-w-fit justify-center rounded-lg md:max-w-6xl shadow-xl px-12 py-6 bg-white m-6 "
+      className="content-center max-w-fit justify-center rounded-lg md:max-w-6xl shadow-xl px-8 py-6 bg-white m-6 "
     >
       <h5 className="my-3 pb-3 text-2xl text-center font-extrabold leading-tight text-title">
         {props.title?.toUpperCase()}
@@ -26,16 +26,16 @@ export const StoryTitleCard = (props: Story): JSX.Element => {
       <p className="mb-4 pb-6 text-base text-blue-800 line-clamp-1">
         {props.story}
       </p>
-      <div className="buttons_container py-6 flex md:flex-row flex-col  gap-5 justify-end">
+      <div className="buttons_container py-6 flex md:flex-row flex-col gap-5 justify-end">
         <button
           onClick={openStory}
-          className="self-end w-48 py-2 text-white rounded-md  bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
         >
           Open
         </button>
         <button
           onClick={handleDeleteStory}
-          className="self-end w-48 py-2 text-white rounded-md  bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
         >
           Delete
         </button>

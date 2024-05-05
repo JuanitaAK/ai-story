@@ -93,7 +93,7 @@ const StoryForm = (): JSX.Element => {
           <select
             id="language"
             {...register("language", { required: true })}
-            className=" block w-full p-2 bg-white  hover:border-gray-500 rounded shadow leading-tight focus:ring focus:ring-story "
+            className=" block w-full p-2 bg-white  hover:border-gray-500 rounded shadow leading-tight focus:ring focus:ring-hover "
           >
             {languages.map((language, index) => (
               <option key={index} value={language}>
@@ -113,7 +113,7 @@ const StoryForm = (): JSX.Element => {
             {...register("main_character_name")}
             placeholder="Toto"
             type="text"
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
           />
           {errors.main_character_name && (
             <div className="text-red-500">
@@ -127,7 +127,7 @@ const StoryForm = (): JSX.Element => {
           <input
             id="character_age"
             {...register("character_age")}
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
             placeholder="3"
             type="number"
           />
@@ -143,7 +143,7 @@ const StoryForm = (): JSX.Element => {
             {...register("favorite_object")}
             type="text"
             placeholder="A teddy bear"
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
           />
           {errors.favorite_object && (
             <div className="text-red-500">{errors.favorite_object.message}</div>
@@ -175,7 +175,7 @@ const StoryForm = (): JSX.Element => {
             {...register("favorite_colors")}
             type="text"
             placeholder="Blue"
-            className="w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
           />
           {errors.favorite_colors && (
             <div className="text-red-500">{errors.favorite_colors.message}</div>

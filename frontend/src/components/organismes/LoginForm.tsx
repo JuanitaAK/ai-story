@@ -108,7 +108,7 @@ export const LoginForm = (): JSX.Element => {
           Password
         </label>
         <input
-          className="w-full p-2 border rounded focus:ring focus:ring-story"
+          className="w-full p-2 border rounded focus:ring focus:ring-hover"
           type="password"
           id="user_password"
           {...register("password")}

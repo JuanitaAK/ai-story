@@ -61,26 +61,26 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
     }
   };
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex p-32 justify-center items-center">
-      <div className="flex flex-col space-y-4 w-full text-font p-6 m-6 rounded-lg bg-white shadow-lg">
-        <h3 className="mb-2 text-3xl self-center font-medium leading-tight text-nav-font">
+    <div className="fixed inset-0  bg-black bg-opacity-40 flex p-3 mt-4 md:p-32 justify-center items-center">
+      <div className="flex flex-col md:max-w-3xl space-y-4 w-full text-font p-3 m-6 rounded-lg bg-white shadow-lg">
+        <h3 className="mb-2 text-lg md:text-3xl self-center font-medium leading-tight text-nav-font">
           What title do you want to give the story ?
         </h3>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col space-y-4 p-3 my-6 mx-12"
+          className="flex flex-col space-y-4 p-3 my-6 md:mx-12"
         >
           <input
             id="title"
             {...register("title")}
             placeholder="My little story"
             type="text"
-            className=" w-full p-2 border rounded focus:ring focus:ring-story"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover color"
           />
           {errors.title && (
             <div className="text-red-500">{errors.title.message}</div>
           )}
-          <div className="buttons_container flex justify-end gap-5  ml-5 mb-8">
+          <div className="buttons_container flex flex-col md:flex-row gap-3 mb-4">
             <button
               type="submit"
               disabled={isSubmitting}

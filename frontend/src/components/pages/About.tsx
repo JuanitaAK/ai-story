@@ -10,9 +10,18 @@ export const About = ():JSX.Element => {
     
     return (
     <div className="about_section p-3 ">
-      <h1 className="text-nav-font text-3xl font-semibold leading-tight my-3">
+      <div className="flex flex-row gap-2">
+      <Image
+          src={women}
+          alt="women coding"
+          width="70"
+          className="md:hidden z-30"
+        />
+      <h2 className="text-nav-font text-3xl font-semibold leading-tight my-3">
         About AI Story
-      </h1>
+      </h2>
+      
+</div>
       <div className="about_text text-font grid grid-rows-1 md:grid-cols-8">
         <div className="md:col-start-1 col-span-5 row-start-1 w-auto rounded-lg bg-white shadow-2xl mb-6 p-5 whitespace-pre-line z-0">   
             {intro}
@@ -28,7 +37,7 @@ export const About = ():JSX.Element => {
           src={women}
           alt="women coding"
           width="300"
-          className="grid md:col-start-6 md:col-span-3 md:row-start-1 col-start-3 row-start-2 z-30"
+          className="invisible md:visible md:grid md:col-start-6 md:col-span-3 md:row-start-1 col-start-3 row-start-2 z-30"
         />
      </div>
     </div>

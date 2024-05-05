@@ -85,7 +85,7 @@ export const ForgotPassword = (): JSX.Element => {
             type="email"
             id="user_mail"
             {...register("user_mail")}
-            className="w-full rounded-lg p-2 border focus:ring focus:ring-story"
+            className="w-full rounded-lg p-2 border focus:ring focus:ring-hover"
             placeholder="toto@aistory.fr"
           />
           {errors.user_mail && (

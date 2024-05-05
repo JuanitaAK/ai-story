@@ -104,12 +104,12 @@ const Navbar = (): JSX.Element => {
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3  "
+                  className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3 z-10  "
                   >
                   Account
                 </button>
                 {isDropdownOpen && (
-                  <div className="items-center bg-button text-white  transition duration-300 absolute right-0 mt-2 w-48 shadow-lg rounded-md  ">
+                  <div className="items-center bg-button text-white  transition duration-300 absolute right-0 mt-6 w-48 shadow-lg rounded-md  ">
                     {/* desktooopp */}
                     <Link
                       href="/profile"
@@ -133,11 +133,11 @@ const Navbar = (): JSX.Element => {
             <div className=" relative md:hidden block transition duration-300">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="z-50 p-3  text-nav-font"
+                className="z-50 p-3 mb-2 text-nav-font text-2xl"
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
               >
-                {isMenuOpen ? "×" : "☰"}
+                {isMenuOpen ? "×" : "☰" }
               </button>
             </div>
           </div>
