@@ -63,19 +63,19 @@ const Navbar = (): JSX.Element => {
     <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font px-5 lg:px-3 shadow-lg font-semibold  text-base md:text-xl">
       <div className="container mx-auto flex justify-between items-center transition duration-300 py-2">
         <Link href="/" className="md=ml-3">
-          <Image src={logo} alt="Logo Story.com" width={45} height={45} />
+          <Image src={logo} alt="Logo Story.com" width={50} height={45} />
         </Link>
         
         { !isLogged && (<div className="flex flex-row gap-2 ">
         {!isVisible&&(  <Link href="/login">
-           <button className="p-2 w-full text-white rounded-md bg-button hover:bg-hover transition duration-300">
+           <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
               Sign in
             </button>
           </Link>
         )}
         {isVisible && (
           <Link href="/signup">
-            <button className="p-2 w-full text-white rounded-md bg-button hover:bg-hover transition duration-300">
+            <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
               Sign up
             </button>
           </Link>)}

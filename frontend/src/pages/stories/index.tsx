@@ -23,10 +23,18 @@ export const getServerSideProps = async (context: NextPageContext) => {
     const response = await axios.get(STORIES_API_URL, {
       headers: { Authorization: `Bearer ${token}` },
     });
+    if (response.status === 404) {
+      return {
+        redirect: {
+          destination: "/story",
+          permanent: false,
+        },
+      };
+    }
     return { props: { stories: response.data } };
   } catch (error) {
     console.error("Failed to fetch stories:", error);
-    return { props: { stories: [] } };
+    return { notFound: true };
   }
 };
 

@@ -41,32 +41,32 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
 
   return (
     <div className="story ">
-      <h2 className="text-3xl font-bold items-start mt-6 leading-tight text-nav-font">
+      <h2 className="text-3xl font-bold items-start ml-6 mt-6 leading-tight text-nav-font">
         Story Created
       </h2>
       <div className="story__container flex flex-col justify-center items-center">
         <StoryCard {...story} />
       </div>
 
-      <div className="buttons_container flex gap-5 mx-5 mb-8">
+      <div className="buttons_container flex justify-center items-center gap-5 mx-5 mb-8">
         <button
           type="submit"
-          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          className="self-end w-48 p-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
           onClick={() => {
             setAddTitleOpen(!addTitleOpen);
           }}
         >
-          Save New Story
+          Save
         </button>
 
         <button
           type="submit"
-          className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          className="self-end w-48 p-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
           onClick={() => {
             handleClickDelete(story.id_story);
           }}
         >
-          Do not save
+         Delete
         </button>
       </div>
 

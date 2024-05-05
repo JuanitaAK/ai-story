@@ -23,7 +23,7 @@ export const StoryTitleCard = (props: Story): JSX.Element => {
       <h5 className="my-3 pb-3 text-2xl text-center font-extrabold leading-tight text-title">
         {props.title?.toUpperCase()}
       </h5>
-      <p className={`mb-4 pb-6 text-base text-blue-800 line-clamp-1`}>
+      <p className="mb-4 pb-6 text-base text-blue-800 line-clamp-1">
         {props.story}
       </p>
       <div className="buttons_container py-6 flex md:flex-row flex-col  gap-5 justify-end">

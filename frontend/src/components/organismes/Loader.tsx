@@ -2,7 +2,7 @@ export const Loader = (): JSX.Element => {
   return (
     <div className="flex mt-32 text-4xl items-center justify-center">
       <svg
-        className="w-10 h-10 text-gray-300 animate-spin m-9"
+        className="w-20 h-20 text-gray-300 animate-spin m-9"
         viewBox="0 0 64 64"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

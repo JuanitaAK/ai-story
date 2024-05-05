@@ -1,5 +1,4 @@
 import { NextPageContext } from "next";
-
 import cookie from "cookie";
 import axios from "axios";
 import OneStorieContainer from "../components/organismes/OneStorieContainer";

@@ -6,9 +6,9 @@ export const NoStoryCard = (): JSX.Element => {
       <p className="my-6 pb-3 text-3xl md:text-4xl text-center font-extrabold leading-tight text-title">
         You have no stories at the moment 🙈
       </p>
-      <p className="my-6 pb-3 text-2xl md:text-4xl text-center font-extrabold leading-tight text-title">
+      {/* <p className="my-6 pb-3 text-2xl md:text-4xl text-center font-extrabold leading-tight text-title">
         Go and create one! 😎
-      </p>
+      </p> */}
       <p className="text-center md:text-3xl text-title">
         Click on the button below to create your first story!
       </p>

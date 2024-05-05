@@ -24,7 +24,6 @@ export const getServerSideProps = async (context: NextPageContext) => {
 
   try {
     const url = STORIES_API_URL + "/" + context.query.id;
-    console.log("url", url);
     const response = await axios.get(url, {
       headers: { Authorization: `Bearer ${token}` },
     });

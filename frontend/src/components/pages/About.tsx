@@ -13,7 +13,7 @@ export const About = ():JSX.Element => {
       <h1 className="text-nav-font text-3xl font-semibold leading-tight my-3">
         About AI Story
       </h1>
-      <div className="about_text grid grid-rows-1 md:grid-cols-8">
+      <div className="about_text text-font grid grid-rows-1 md:grid-cols-8">
         <div className="md:col-start-1 col-span-5 row-start-1 w-auto rounded-lg bg-white shadow-2xl mb-6 p-5 whitespace-pre-line z-0">   
             {intro}
             <br />
