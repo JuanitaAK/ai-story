@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import Footer from "../Footer";
 
 describe("Footer", () => {
+  
   it("should render the text 'About'", () => {
     render(<Footer />);
     const about = screen.getByRole('link', {name: "About AI Story"})
@@ -16,4 +17,5 @@ describe("Footer", () => {
     const contactButton = screen.getByText("Contact");
     expect(contactButton).toBeVisible();
   });
-});
+
+})
