@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "./Loader";
+import { Loader2 } from "./Loader2";
 
 export type SignUpFormData = {
   user_name: string;
@@ -70,7 +70,7 @@ export const SignUpForm = (): JSX.Element => {
   ) => {
     console.log(data);
     try {
-      <Loader />;
+      <Loader2 />;
       await createUser(data);
       await router.push(`/login`);
     } catch (error) {
@@ -216,7 +216,7 @@ export const SignUpForm = (): JSX.Element => {
 
         <p className="text-m text-neutral-600 mt-4">
           Already have an account? &nbsp;
-          <Link href="/login" className="text-blue hover:underline">
+          <Link href="/login" className=" hover:font-semibold text-nav-font">
             Sign In &nbsp;
           </Link>
         </p>

@@ -3,8 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "./Loader";
 import { useState } from "react";
+import { Loader2 } from "./Loader2";
 
 export type LoginForm = {
   user_mail: string;
@@ -76,8 +76,8 @@ export const LoginForm = (): JSX.Element => {
   return (
     <div className="bg-white p-6 m-3  rounded-lg shadow-lg w-full max-w-md ">
       {isLoading && (
-        <div className="absolute inset-0 bg-white  flex justify-center items-center z-50">
-          <Loader />
+        <div className="absolute inset-0 bg-white flex justify-center items-center z-50">
+          <Loader2 />
         </div>
       )}
 
@@ -97,8 +97,8 @@ export const LoginForm = (): JSX.Element => {
           type="email"
           id="user_mail"
           {...register("user_mail")}
-          className="w-full p-2 border rounded focus:ring focus:ring-story"
-          placeholder="toto@mystory.com"
+          className="w-full p-2 border rounded focus:ring"
+          placeholder="toto@aistory.com"
         />
         {errors.user_mail && (
           <div className="text-red-500">{errors.user_mail.message}</div>
@@ -128,9 +128,9 @@ export const LoginForm = (): JSX.Element => {
       </form>
 
       <p className=" text-neutral-600 mt-4">
-        Do not have an account? &nbsp;
-        <Link href="/signup" className="text-blue hover:underline">
-          Sign Up
+        Don't remember your password ? &nbsp;
+        <Link href="/forgot-password" className=" hover:font-semibold text-nav-font">
+          Change it
         </Link>
       </p>
     </div>

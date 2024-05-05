@@ -9,6 +9,7 @@ const Navbar = (): JSX.Element => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
 
   //option if httpsOnly
@@ -22,7 +23,6 @@ const Navbar = (): JSX.Element => {
   // };
 
   useEffect(() => {
-    // console.log(Cookies.get("Auth-Token"));
     if (Cookies.get("Auth-Token")) {
       setIsLogged(true);
     }
@@ -38,6 +38,18 @@ const Navbar = (): JSX.Element => {
     };
   }, []);
 
+  useEffect(() => {
+    if(router.pathname === "/login") {
+      setIsVisible(true);
+    }
+    if(router.pathname === "/signup") {
+      setIsVisible(false);
+    }
+    if(router.pathname === "/"){
+      setIsVisible(false);
+    }},[router])
+
+
   const handleLogout = () => {
     try {
       Cookies.remove("Auth-Token");
@@ -48,14 +60,29 @@ const Navbar = (): JSX.Element => {
     }
   };
   return (
-    <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font font-semibold px-5 lg:px-3 shadow-lg text-2xl">
+    <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font px-5 lg:px-3 shadow-lg font-semibold  text-base md:text-xl">
       <div className="container mx-auto flex justify-between items-center transition duration-300">
         <Link href="/" className="md=ml-3">
-          <Image src={logo} alt="Logo Story.com" width={70} height={70} />
+          <Image src={logo} alt="Logo Story.com" width={60} height={60} />
         </Link>
+        
+        { !isLogged && (<div className="flex flex-row gap-2 ">
+        {!isVisible&&(  <Link href="/login">
+           <button className="p-2 w-full text-white rounded-md bg-button hover:bg-hover transition duration-300">
+              Sign in
+            </button>
+          </Link>
+        )}
+        {isVisible && (
+          <Link href="/signup">
+            <button className="p-2 w-full text-white rounded-md bg-button hover:bg-hover transition duration-300">
+              Sign up
+            </button>
+          </Link>)}
+          </div>)}
 
         {isLogged && (
-          // menu descktop
+          // menu desktop
           <div>
             <div className="hidden md:flex space-x-4">
               <Link
@@ -82,7 +109,7 @@ const Navbar = (): JSX.Element => {
                   Account
                 </button>
                 {isDropdownOpen && (
-                  <div className="items-center bg-sky-400 text-white  transition duration-300 absolute right-0 mt-2 w-48 shadow-lg rounded-md  ">
+                  <div className="items-center bg-button text-white  transition duration-300 absolute right-0 mt-2 w-48 shadow-lg rounded-md  ">
                     {/* desktooopp */}
                     <Link
                       href="/profile"
@@ -121,14 +148,14 @@ const Navbar = (): JSX.Element => {
           <div className=" fixed md:hidden block right-4 mt-40 w-48 bg-white shadow-xl rounded-lg">
             <Link
               href="/stories"
-              className="block hover:bg-hover hover:text-nav-hover rounded-md p-3 transition duration-300"
+              className="block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Stories
             </Link>
             <Link
               href="/form"
-              className=" block hover:bg-hover hover:text-nav-hover rounded-md p-3 transition duration-300 "
+              className=" block hover:bg-hover hover:text-white rounded-md p-3 transition duration-300 "
               onClick={() => setIsMenuOpen(false)}
             >
               New Story
@@ -142,10 +169,10 @@ const Navbar = (): JSX.Element => {
             </Link>
 
             {isDropdownOpen && (
-              <div className=" fixed mt-5justify-center block right-15 rounded-xl bg-sky-400 text-white w-48 shadow-lg transition duration-300">
+              <div className=" fixed mt-5justify-center block right-15 rounded-xl bg-button text-white w-48 shadow-lg transition duration-300">
                 <Link
                   href="/profile"
-                  className="block px-4 py-2 hover:bg-hover hover:text-nav-hover rounded-md transition duration-300"
+                  className="block px-4 py-2 hover:bg-hover rounded-md transition duration-300"
                   onClick={() => setIsDropdownOpen(false)}
                 >
                   Profile
@@ -153,7 +180,7 @@ const Navbar = (): JSX.Element => {
                 <Link
                   href="/"
                   onClick={handleLogout}
-                  className="block  hover:bg-hover hover:text-nav-hover rounded-md px-3 py-3 transition duration-300"
+                  className="block  hover:bg-hover rounded-md px-3 py-3 transition duration-300"
                 >
                   Logout
                 </Link>
