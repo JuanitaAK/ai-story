@@ -126,7 +126,7 @@ export const ResetPassword = (): JSX.Element => {
                 {errors.user_confirmed_password.message}
               </span>
             )}
-            {result && <span className="text-red-500 text-m">{result}</span>}
+            {result && <span className="text-green-700 text-m">{result}</span>}
           </div>
 
           <button

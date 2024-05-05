@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../../../public/logo.png";
+import logo from "../../../../public/logoAiStory.png";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
@@ -61,9 +61,9 @@ const Navbar = (): JSX.Element => {
   };
   return (
     <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font px-5 lg:px-3 shadow-lg font-semibold  text-base md:text-xl">
-      <div className="container mx-auto flex justify-between items-center transition duration-300">
+      <div className="container mx-auto flex justify-between items-center transition duration-300 py-2">
         <Link href="/" className="md=ml-3">
-          <Image src={logo} alt="Logo Story.com" width={60} height={60} />
+          <Image src={logo} alt="Logo Story.com" width={45} height={45} />
         </Link>
         
         { !isLogged && (<div className="flex flex-row gap-2 ">

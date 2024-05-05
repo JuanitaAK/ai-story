@@ -86,12 +86,12 @@ export const ForgotPassword = (): JSX.Element => {
             id="user_mail"
             {...register("user_mail")}
             className="w-full rounded-lg p-2 border focus:ring focus:ring-story"
-            placeholder="toto@mystory.com"
+            placeholder="toto@aistory.fr"
           />
           {errors.user_mail && (
             <div className="text-red-500">{errors.user_mail.message}</div>
           )}
-          {result && <span className="text-nav-font text-m">{result}</span>}
+          {result && <span className="text-green-700 text-m">{result}</span>}
           <button
             type="submit"
             className="bg-button text-white p-2 mt-3 font-semibold md:max-w-sm rounded-md hover:bg-hover transition duration-300"
