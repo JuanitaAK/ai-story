@@ -128,7 +128,7 @@ export const LoginForm = (): JSX.Element => {
       </form>
 
       <p className=" text-neutral-600 mt-4">
-        Don't remember your password ? &nbsp;
+        You do not remember your password ? {" "}
         <Link href="/forgot-password" className=" hover:font-semibold text-nav-font">
           Change it
         </Link>
