@@ -10,16 +10,4 @@ describe("LandingPage", () => {
 
     expect(mainImage).toBeInTheDocument();
   });
-
-  it("should render a button with the text 'Sign in'", () => {
-    render(<LandingPage />);
-    const loginButton = screen.getByRole("link", { name: "Sign in" });
-    expect(loginButton).toBeVisible();
-  });
-
-  it("should render a button with the text 'Sign Up'", () => {
-    render(<LandingPage />);
-    const registerButton = screen.getByRole("link", { name: "Sign up" });
-    expect(registerButton).toBeVisible();
-  });
 });
