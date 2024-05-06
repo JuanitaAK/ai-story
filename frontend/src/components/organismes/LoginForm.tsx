@@ -10,28 +10,19 @@ export type LoginForm = {
   user_mail: string;
   password: string;
 };
-const passwordRequirements =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-const schema = z
-  .object({
-    user_mail: z
-      .string()
-      .trim()
-      .min(3, { message: "Email is required" })
-      .email("This is not a valid email."),
-    password: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters long." }),
-  })
-  .refine((data) => passwordRequirements.test(data.password), {
-    path: ["user_password"],
-    message:
-      "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character (@, $, !, %, *, ?, &).",
-  });
+const schema = z.object({
+  user_mail: z
+    .string()
+    .trim()
+    .min(3, { message: "Email is required" })
+    .email("This is not a valid email."),
+  password: z.string(),
+});
 
 export const LoginForm = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
+  const [response, setResponse] = useState("");
   const router = useRouter();
 
   const {
@@ -55,12 +46,14 @@ export const LoginForm = (): JSX.Element => {
         body: JSON.stringify(data),
       });
       const resJson = await response.json();
-      setIsLoading(false);
+      if (response.status === 429 || response.status === 401) {
+        setResponse(resJson.Response);
+        setResponse(response.statusText);
+      }
       if (response.status === 200) {
         router.push(`/stories`);
-      } else {
-        router.push(`/`);
       }
+      setIsLoading(false);
     } catch (error) {
       setError("root", {
         message: "Something is with wrong with your mail or password",
@@ -115,8 +108,9 @@ export const LoginForm = (): JSX.Element => {
           placeholder="********"
         />
         {errors.password?.message && (
-          <div className="text-red-500">{errors.password.message}</div>
+          <div className="text-red-500">{errors.root?.message}</div>
         )}
+        {response && <span className="text-red-500">{response}</span>}
 
         <button
           disabled={isSubmitting}
@@ -128,8 +122,11 @@ export const LoginForm = (): JSX.Element => {
       </form>
 
       <p className=" text-neutral-600 mt-4">
-        You do not remember your password ? {" "}
-        <Link href="/forgot-password" className=" hover:font-semibold text-nav-font">
+        You do not remember your password ?{" "}
+        <Link
+          href="/forgot-password"
+          className=" hover:font-semibold text-nav-font"
+        >
           Change it
         </Link>
       </p>
