@@ -4,10 +4,10 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import { corsOptions } from "./middlewares/cors";
 import { globalLimiter } from "./middlewares/limiter";
+import { auth } from "./middlewares/auth";
 
 import userRouter from "./routes/userRouter";
 import storyRouter from "./routes/storyRouter";
-import { auth } from "./middlewares/auth";
 dotenv.config();
 
 const app = express();

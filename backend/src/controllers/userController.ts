@@ -113,10 +113,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     const token = crypto.randomBytes(20).toString("hex");
     const encryptedToken = encryptResetPasswordToken(token);
     await postResetPasswordToken(encryptedToken, user_mail);
-
-    const resetUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/reset-password?otp=${token}`;
+    const resetUrl = `${process.env.ALLOW_ORIGIN}/reset-password?otp=${token}`;
 
     const html = `<h2>Reset your password</h2> \n \n
     <p>Click <a href="${resetUrl}">here</a> to reset your password.</p> \n \n <p>This link will expire in 10 minutes.</p>`;
