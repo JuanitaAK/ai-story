@@ -17,18 +17,18 @@ const StoryContainer = ({ story }: { story: Story }): JSX.Element => {
 
 
   return (
-    <div className="story max-w-max block rounded-lg bg-white shadow-xl m-5 mb-8 p-5">
-      <h3 className="mb-6 text-3xl font-bold leading-tight text-nav-font">
+    <div className="story max-w-max block rounded-lg bg-white shadow-xl m-5 mb-8 p-3">
+      <h3 className="mb-6 text-3xl text-center font-bold leading-tight text-nav-font">
         {story.title}
       </h3>
       <p className="story__container whitespace-pre-line text-blue-800">
         {story.story}
       </p>
 
-      <div className="buttons_container flex flex-col md:flex-row gap-5 mx-5 my-6">
+      <div className="buttons_container flex flex-col md:self-end w-full md:flex-row gap-5 my-6 p-3">
         <button
           type="submit"
-          className="self-end w-48 py-2 text-white text rounded-md bg-button hover:bg-hover transition duration-300"
+          className=" text-white md:w-48 text-center p-2 rounded-md bg-button hover:bg-hover transition duration-300"
           onClick={() => {
             setAddTitleOpen(!addTitleOpen);
           }}
@@ -37,7 +37,7 @@ const StoryContainer = ({ story }: { story: Story }): JSX.Element => {
         </button>
         <Link
           href='/stories'
-          className="self-center w-48 py-2 text-center text-white rounded-md bg-button hover:bg-hover  transition duration-300"
+          className="text-center md:w-48 text-white p-2 rounded-md bg-button hover:bg-hover  transition duration-300"
           >
           Close
         </Link>

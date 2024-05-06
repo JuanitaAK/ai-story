@@ -1,6 +1,6 @@
 export const Loader = (): JSX.Element => {
   return (
-    <div className="flex mt-32 text-4xl items-center justify-center">
+    <div className="flex md:flex-row flex-col mt-32 text-4xl items-center justify-center">
       <svg
         className="w-20 h-20 text-gray-300 animate-spin m-9"
         viewBox="0 0 64 64"
@@ -26,7 +26,7 @@ export const Loader = (): JSX.Element => {
         ></path>
       </svg>
 
-      <div className="m-8 relative space-y-4">Give me a sec... 👀</div>
+      <div className="m-8 relative space-y-4 text-center text-2xl ">Give me a sec... 👀</div>
     </div>
   );
 };

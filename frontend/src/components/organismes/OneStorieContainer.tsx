@@ -47,18 +47,7 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
       <div className="story__container flex flex-col justify-center items-center">
         <StoryCard {...story} />
       </div>
-
       <div className="buttons_container flex justify-center items-center gap-5 mx-5 mb-8">
-        <button
-          type="submit"
-          className="self-end w-48 p-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
-          onClick={() => {
-            setAddTitleOpen(!addTitleOpen);
-          }}
-        >
-          Save
-        </button>
-
         <button
           type="submit"
           className="self-end w-48 p-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
@@ -68,8 +57,17 @@ const OneStoriesContainer = ({ story }: { story: Story }): JSX.Element => {
         >
          Delete
         </button>
+        <button
+          type="submit"
+          className="self-end w-48 p-2 text-white rounded-md bg-button hover:bg-hover transition duration-300"
+          onClick={() => {
+            setAddTitleOpen(!addTitleOpen);
+          }}
+        >
+          Save
+        </button>
+     
       </div>
-
       <div id="addTitle">{addTitleOpen && <AddTitle story={story} />}</div>
     </div>
   );

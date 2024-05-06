@@ -63,7 +63,7 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
   return (
     <div className="fixed inset-0  bg-black bg-opacity-40 flex p-3 mt-4 md:p-32 justify-center items-center">
       <div className="flex flex-col md:max-w-3xl space-y-4 w-full text-font p-3 m-6 rounded-lg bg-white shadow-lg">
-        <h3 className="mb-2 text-lg md:text-3xl self-center font-medium leading-tight text-nav-font">
+        <h3 className="mb-2 text-lg md:text-3xl text-center font-medium leading-tight text-nav-font">
           What title do you want to give the story ?
         </h3>
         <form
@@ -75,7 +75,7 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
             {...register("title")}
             placeholder="My little story"
             type="text"
-            className="w-full p-2 border rounded focus:ring focus:ring-hover color"
+            className="w-full p-2 border rounded focus:ring focus:ring-hover"
           />
           {errors.title && (
             <div className="text-red-500">{errors.title.message}</div>
@@ -84,13 +84,13 @@ export const AddTitle = ({ story }: AddTitleProps): JSX.Element => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+              className="md:self-end md:w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
             >
               Add Title
             </button>
             <button
               type="submit"
-              className="self-end w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+              className="md:self-end md:w-48 py-2 text-white rounded-md bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
               onClick={() => handleClickDelete(story.id_story)}
             >
               Delete Story

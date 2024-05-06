@@ -41,7 +41,7 @@ const ProfilePage = ({
       
         <button
           onClick={handleLogout}
-          className=" w-48 py-2 text-xl text-white rounded-md  bg-button hover:bg-hover focus:ring-hover transition duration-300"
+          className="w-full md:w-52 py-2 text-xl text-white rounded-md  bg-button hover:bg-hover focus:ring-hover transition duration-300"
         >
           Logout
         </button>

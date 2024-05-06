@@ -26,7 +26,7 @@ export const StoryCard = (props: Story): JSX.Element => {
       <div className="buttons_container flex justify-end m-4 p-2">
         <button
           onClick={toggleText}
-          className="self-end w-48 py-2 text-white rounded-md  bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
+          className="self-end w-full md:w-48 py-2 text-white rounded-md  bg-button hover:bg-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hover transition duration-300"
         >
       {isExpanded ? "Show Less" : "Show More"}
         </button>
