@@ -3,7 +3,7 @@ import Link from "next/link";
 const Footer = (): JSX.Element => {
   const year = new Date().getFullYear();
   return (
-    <div className="flex flex-col pt-3  md:items-end items-center gap-4 md:pr-20 bg-bgFooter shadow-lg text-xl font-bold text-white  sm:mb-0 ">
+    <div className="flex flex-col pt-3 md:items-end items-center gap-4 md:pr-20 bg-bgFooter shadow-lg text-xl text-white sm:mb-0">
       <div className="flex md:gap-6 gap-3 md:text-2xl ">
         <Link
           href="/about"
