@@ -13,9 +13,9 @@ const Footer = (): JSX.Element => {
         </Link>
         <Link
           href="/contact"
-          className="hover:text-nav-hover font-semibold rounded-md"
+          className="hover:text-nav-hover font-semibold rounded-md invisible"
         >
-          {/* Contact */}
+          Contact
         </Link>
       </div>
       <span className="text-xs flex font-thin flex-col md:text-right text-center mx-2 mb-5">
