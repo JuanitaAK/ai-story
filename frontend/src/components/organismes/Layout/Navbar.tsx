@@ -39,16 +39,16 @@ const Navbar = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    if(router.pathname === "/login") {
+    if (router.pathname === "/login") {
       setIsVisible(true);
     }
-    if(router.pathname === "/signup") {
+    if (router.pathname === "/signup") {
       setIsVisible(false);
     }
-    if(router.pathname === "/"){
+    if (router.pathname === "/") {
       setIsVisible(false);
-    }},[router])
-
+    }
+  }, [router]);
 
   const handleLogout = () => {
     try {
@@ -60,26 +60,34 @@ const Navbar = (): JSX.Element => {
     }
   };
   return (
-    <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font px-5 lg:px-3 shadow-lg font-semibold  text-base md:text-xl">
+    <nav className="menu-btn Z-10 sticky top-0 z-50 bg-navbar text-nav-font px-2 md:px-5 lg:px-3 shadow-lg font-semibold  text-base md:text-xl">
       <div className="container mx-auto flex justify-between items-center transition duration-300 py-2">
-        <Link href="/" className="md=ml-3">
+        <Link
+          href="/"
+          className="md=ml-3 flex flex-row items-center gap-2  md:gap-3 md:text-xl"
+        >
           <Image src={logo} alt="Logo Story.com" width={50} height={45} />
+          <p>AI Story</p>
         </Link>
-        
-        { !isLogged && (<div className="flex flex-row gap-2 ">
-        {!isVisible&&(  <Link href="/login">
-           <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
-              Sign in
-            </button>
-          </Link>
+
+        {!isLogged && (
+          <div className="flex flex-row gap-2 ">
+            {!isVisible && (
+              <Link href="/login">
+                <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
+                  Sign in
+                </button>
+              </Link>
+            )}
+            {isVisible && (
+              <Link href="/signup">
+                <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
+                  Sign up
+                </button>
+              </Link>
+            )}
+          </div>
         )}
-        {isVisible && (
-          <Link href="/signup">
-            <button className="p-2 px-4 w-auto text-white rounded-md bg-button hover:bg-hover transition duration-300">
-              Sign up
-            </button>
-          </Link>)}
-          </div>)}
 
         {isLogged && (
           // menu desktop
@@ -105,7 +113,7 @@ const Navbar = (): JSX.Element => {
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="hover: hover:text-nav-hover cursor-pointer transition duration-300 rounded-md p-3 z-10  "
-                  >
+                >
                   Account
                 </button>
                 {isDropdownOpen && (
@@ -137,7 +145,7 @@ const Navbar = (): JSX.Element => {
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
               >
-                {isMenuOpen ? "×" : "☰" }
+                {isMenuOpen ? "×" : "☰"}
               </button>
             </div>
           </div>
