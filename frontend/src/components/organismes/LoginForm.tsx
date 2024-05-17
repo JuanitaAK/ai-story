@@ -36,8 +36,8 @@ export const LoginForm = (): JSX.Element => {
   });
 
   const onSubmit: SubmitHandler<LoginForm> = async (data: LoginForm) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -46,14 +46,20 @@ export const LoginForm = (): JSX.Element => {
         body: JSON.stringify(data),
       });
       const resJson = await response.json();
+
       if (response.status === 429 || response.status === 401) {
         setResponse(resJson.Response);
         setResponse(response.statusText);
       }
-      if (response.status === 200) {
-        router.push(`/stories`);
+      if (response.status === 500 || response.status === 404) {
+        setResponse(resJson.Response);
+        setResponse(response.statusText);
       }
-      setIsLoading(false);
+      if (response.status === 200) {
+        await router.push(`/stories`);
+      } else {
+        setResponse("An unexpected error occurred.");
+      }
     } catch (error) {
       setError("root", {
         message: "Something is with wrong with your mail or password",
@@ -64,6 +70,7 @@ export const LoginForm = (): JSX.Element => {
         console.error("Other Errors:", error);
       }
     }
+    setIsLoading(false);
   };
 
   return (
@@ -73,9 +80,7 @@ export const LoginForm = (): JSX.Element => {
           <Loader2 />
         </div>
       )}
-
-      <h2 className="text-3xl font-bold text-nav-font mb-6  ">Sign In</h2>
-
+      <h2 className="text-3xl font-bold text-nav-font mb-6">Sign In</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"

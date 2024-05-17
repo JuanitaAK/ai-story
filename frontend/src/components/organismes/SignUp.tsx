@@ -1,10 +1,11 @@
 import { createUser } from "@/services/creatUserFormApi";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, set, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "./Loader2";
+import { useState } from "react";
 
 export type SignUpFormData = {
   user_name: string;
@@ -33,26 +34,28 @@ const schema = z
     confirmEmail: z.string().trim().email("This is not a valid email."),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(8, { message: "Password must be at least 8 characters" })
+      .regex(passwordRequirements, {
+        message:
+          "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (@, $, !, %, *, ?, &).",
+      }),
     confirm_password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters" }),
-  })
-  .refine((data) => passwordRequirements.test(data.password), {
-    path: ["user_password"],
-    message:
-      "Password must be at least 8 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character (@, $, !, %, *, ?, &).",
   })
   .refine((data) => data.user_mail === data.confirmEmail, {
     path: ["confirmEmail"],
     message: "Email don't match  ❌",
   })
   .refine((data) => data.password === data.confirm_password, {
-    path: ["confirmPassword"],
+    path: ["confirm_password"],
     message: "Password don't match  ❌",
   });
 
 export const SignUpForm = (): JSX.Element => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [response, setResponse] = useState("");
+
   const router = useRouter();
 
   const {
@@ -68,12 +71,11 @@ export const SignUpForm = (): JSX.Element => {
   const onSubmit: SubmitHandler<SignUpFormData> = async (
     data: SignUpFormData
   ) => {
-    console.log(data);
     try {
-      <Loader2 />;
       await createUser(data);
       await router.push(`/login`);
     } catch (error) {
+      setResponse(response);
       setError("root", {
         message: "Something is with wrong with your informations",
       });
@@ -81,6 +83,7 @@ export const SignUpForm = (): JSX.Element => {
         console.error("Validation Errors:", error.errors);
       } else {
         console.error("Other Errors:", error);
+        setResponse(String(error));
       }
     }
   };
@@ -135,7 +138,6 @@ export const SignUpForm = (): JSX.Element => {
               )}
             </div>
           </div>
-
           <label
             className="text-m font-medium text-neutral-700"
             htmlFor="email"
@@ -151,6 +153,9 @@ export const SignUpForm = (): JSX.Element => {
           />
           {errors.user_mail && (
             <div className="text-red-500">{errors.user_mail.message}</div>
+          )}
+          {errors.root && (
+            <div className="text-red-500">{errors.root.message}</div>
           )}
           <label
             className="text-m font-medium text-neutral-700"
@@ -168,7 +173,6 @@ export const SignUpForm = (): JSX.Element => {
           {errors.confirmEmail && (
             <div className="text-red-500">{errors.confirmEmail.message}</div>
           )}
-
           <label
             className="text-m font-medium text-neutral-700"
             htmlFor="password"
@@ -185,7 +189,6 @@ export const SignUpForm = (): JSX.Element => {
           {errors.password && (
             <div className="text-red-500">{errors.password.message}</div>
           )}
-
           <label
             htmlFor="confirm_password"
             className="text-m font-medium text-neutral-700"
@@ -204,6 +207,7 @@ export const SignUpForm = (): JSX.Element => {
               {errors.confirm_password.message}
             </div>
           )}
+          {response && <span className="text-red-500">{response}</span>}
 
           <button
             disabled={isSubmitting}
